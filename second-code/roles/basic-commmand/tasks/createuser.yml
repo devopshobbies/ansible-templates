@@ -1,0 +1,11 @@
+- name: create username
+  user:
+    name: userforansbile
+    shell: /bin/bash
+
+
+- name: Set authorized key
+  authorized_key:
+    user: userforansbile
+    state: present
+    key: "{{ ssh_key }}"

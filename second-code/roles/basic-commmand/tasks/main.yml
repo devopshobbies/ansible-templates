@@ -1,0 +1,5 @@
+---
+- include: update.yml
+- include: software.yml
+- include: python.yml
+- include: createuser.yml
