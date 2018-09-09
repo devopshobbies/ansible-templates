@@ -1,0 +1,39 @@
+- name: copy private key to agent
+  template:
+    src: github
+    dest: /home/{{ username }}/.ssh/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0400
+
+- name: copy public key to agent
+  template:
+    src: github.pub
+    dest: /home/{{ username }}/.ssh/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0400
+
+- name: copy ssh config file to agent
+  template:
+    src: config
+    dest: /home/{{ username }}/.ssh/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0400
+
+- name: copy ssh bash file to agent
+  template:
+    src: github.sh
+    dest: /home/{{ username }}/.ssh/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: a+x
+
+- name: copy authorized_keys for access pem file
+  template:
+    src: authorized_keys
+    dest: /home/{{ username }}/.ssh/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0400

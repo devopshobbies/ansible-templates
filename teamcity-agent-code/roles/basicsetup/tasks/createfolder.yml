@@ -1,0 +1,41 @@
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}/{{ application }}
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}/{{ application }}/data
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}/{{ application }}/log
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}/{{ application }}/script
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: create folder for teamcity
+  file:
+      path: /{{ username }}/{{ application }}/content
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"

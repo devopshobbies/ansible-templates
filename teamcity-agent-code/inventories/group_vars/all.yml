@@ -1,0 +1,21 @@
+---
+
+docker_apt_arch: amd64
+ansible_distribution: ubuntu
+ansible_distribution_release: xenial
+docker_apt_release_channel: stable
+docker_apt_repository: deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}
+
+yarn_repository: deb https://dl.yarnpkg.com/debian/ stable main
+
+nodejs_repository: deb https://deb.nodesource.com/node_8.x xenial main
+
+server_url: http://192.168.0.85:8111/
+os: ubuntu
+agent_name: agent-learning
+
+username: learning
+
+application: teamcityagent
+
+public_key: "ssh-rsa AAAAkfvbfdjdkfnbkgbngf-key@learning"

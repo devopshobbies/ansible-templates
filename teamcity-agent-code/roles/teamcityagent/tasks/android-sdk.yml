@@ -1,0 +1,64 @@
+- name: Download Android Studio file
+  get_url:
+    url: https://dl.google.com/dl/android/studio/ide-zips/3.1.4.0/android-studio-ide-173.4907809-linux.zip
+    dest: /{{username}}/{{application}}/content/
+
+- name: Download Command line tools
+  get_url:
+    url: https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+    dest: /{{username}}/{{application}}/content/
+
+- name: unzip teamcity files
+  unarchive:
+    src: /{{username}}/{{application}}/content/android-studio-ide-173.4907809-linux.zip
+    dest: /{{username}}/{{application}}/content/
+    remote_src: yes
+
+- name: unzip teamcity files
+  unarchive:
+    src: /{{username}}/{{application}}/content/sdk-tools-linux-4333796.zip
+    dest: /{{username}}/{{application}}/content/android-studio
+    remote_src: yes
+
+- name: add environment to bachrc
+  lineinfile:
+    dest: /home/{{ username }}/.bashrc
+    line: "export PATH=/{{username}}/{{application}}/content/android-studio/tools/bin:${PATH}"
+    state: present
+
+- name: add environment to /etc/environment
+  lineinfile:
+    dest: /etc/environment
+    line: "ANDROID_HOME=/{{username}}/{{application}}/content/android-studio/tools/bin"
+    state: present
+
+- name: copy ssh bash file to agent
+  template:
+    src: sdk-pakages.sh
+    dest: /{{username}}/{{application}}/script/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: a+x
+
+- name: install sdk pakages
+  shell: /{{username}}/{{application}}/script/sdk-pakages.sh
+
+- name: Copy a "licenses" file to the tools folder
+  shell: cp -r /{{username}}/{{application}}/content/android-studio/licenses  /{{username}}/{{application}}/content/android-studio/tools/bin/
+
+- name: Change owner of android-studio directory
+  file:
+      path: /{{username}}/{{application}}/content/android-studio
+      owner: "{{ username }}"
+      group: "{{ username }}"
+      recurse: yes
+
+- name: delete Android Studio file
+  file:
+      path: /{{username}}/{{application}}/content/android-studio-ide-173.4907809-linux.zip
+      state: absent
+
+- name: delete Command line tools
+  file:
+      path: /{{username}}/{{application}}/content/sdk-tools-linux-4333796.zip
+      state: absent

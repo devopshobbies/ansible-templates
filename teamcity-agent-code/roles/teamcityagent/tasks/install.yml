@@ -1,0 +1,15 @@
+- name: configure teamcity-agent
+  template:
+    src: buildAgent.properties
+    dest: /{{username}}/{{application}}/data/conf/
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: teamcity-agent running
+  command: /{{username}}/{{application}}/data/bin/agent.sh start
+  become_user: "{{ username }}"
+
+- name: configure supervisor teamcity-agent
+  template:
+    src: teamcity-agent.conf
+    dest: /etc/supervisor/conf.d/

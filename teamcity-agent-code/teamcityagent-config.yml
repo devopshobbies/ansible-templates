@@ -1,0 +1,10 @@
+---
+
+- hosts: agents
+  gather_facts: False
+  become: yes
+
+  roles:
+    - basicsetup
+    - dockerconfig
+    - teamcityagent

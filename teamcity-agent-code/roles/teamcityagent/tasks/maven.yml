@@ -1,0 +1,43 @@
+- name: Download Maven files
+  get_url:
+    url: https://archive.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
+    dest: /{{username}}/{{application}}/content/
+
+- name: unzip Maven files
+  unarchive:
+    src: /{{username}}/{{application}}/content/apache-maven-3.2.5-bin.tar.gz
+    dest: /{{username}}/{{application}}/content/
+    remote_src: yes
+
+- name: delete .tar.gz file
+  file:
+      path: /{{username}}/{{application}}/content/apache-maven-3.2.5-bin.tar.gz
+      state: absent
+
+- name: Create folder for Maven
+  file:
+      path: /{{username}}/{{application}}/content/maven
+      state: directory
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+- name: copy files
+  shell: mv /{{username}}/{{application}}/content/apache-maven-3.2.5/*  /{{username}}/{{application}}/content/maven/
+
+- name: delete maven main directory
+  file:
+      path: /{{username}}/{{application}}/content/apache-maven-3.2.5
+      state: absent
+
+- name: Change owner of Maven directory
+  file:
+      path: /{{username}}/{{application}}/content/maven
+      owner: "{{ username }}"
+      group: "{{ username }}"
+      recurse: yes
+
+- name: add environment to bachrc
+  lineinfile:
+    dest: /home/{{ username }}/.bashrc
+    line: "export PATH=/{{username}}/{{application}}/content/maven/bin:${PATH}"
+    state: present
