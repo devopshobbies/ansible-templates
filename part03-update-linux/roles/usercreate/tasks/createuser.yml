@@ -1,0 +1,22 @@
+- name: create username
+  user:
+    name: test
+    name: test
+    shell: /bin/bash
+
+
+- name: create folder for .ssh
+  file:
+      path: /home/{{user_name}}/.ssh
+      state: directory
+      owner: test
+      group: test
+      mode: 0700
+
+- name: copy public_keys to server
+  template:
+      src: authorized_keys
+      dest: /home/{{user_name}}/.ssh
+      owner: test
+      group: test
+      mode: 0400
