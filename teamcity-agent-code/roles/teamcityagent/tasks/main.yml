@@ -1,8 +1,0 @@
----
-
-- include: copysshfiles.yml
-- include: createfolder.yml
-- include: python.yml
-- include: maven.yml
-- include: android-sdk.yml
-- include: install.yml

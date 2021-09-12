@@ -1,5 +1,0 @@
----
-
-- include: docker-install.yml
-
-- include: yarn-install.yml

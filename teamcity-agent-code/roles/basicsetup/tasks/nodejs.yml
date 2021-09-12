@@ -1,7 +1,0 @@
-- name: Install the gpg key for nodejs LTS
-  shell:  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-
-- name: Install the nodejs
-  apt:
-    name: nodejs
-    state: present
