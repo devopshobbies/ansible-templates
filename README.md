@@ -28,5 +28,3 @@ If you find any **bugs** in the examples, please file an issue.
  - [ ] Adding Ansible Consul
  - [ ] Adding Ansible Vault
 
-# bash-script-tutorial
-
