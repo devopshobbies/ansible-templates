@@ -12,6 +12,3 @@ To run a particular configuration:
 ```
 ansible-playbook -i inventories/ ansbile-learning.yml
 ```
-
-
-
