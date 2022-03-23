@@ -1,7 +1,7 @@
 # Ansible-tutorial
 
 <p align="center">
- <img alt="Ansible Logo" src="https://cdn.educba.com/academy/wp-content/uploads/2019/10/ansible-architecture.png.webp">
+ <img alt="Ansible Logo" src="image/ansible-architecture.png">
 </p>
 
 
