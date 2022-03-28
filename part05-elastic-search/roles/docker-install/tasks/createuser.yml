@@ -1,0 +1,7 @@
+- name: create user
+  user:
+    name: test-docker
+    state: present
+
+- name: Manage Docker as a non-root user
+  shell: sudo usermod -aG docker test-docker

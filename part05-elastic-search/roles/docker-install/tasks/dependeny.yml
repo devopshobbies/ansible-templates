@@ -1,0 +1,12 @@
+- name: Install packages and role dependencies
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    install_recommends: False
+    update_cache: True
+    cache_valid_time: 86400
+  with_items:
+    - "apt-transport-https"
+    - "ca-certificates"
+    - "software-properties-common"
+    - "cron"
