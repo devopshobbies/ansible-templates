@@ -1,0 +1,22 @@
+---
+- name: Deploy devops Account
+  hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+    - name: Create account
+      user:
+        name: devops
+
+    - name: sudo access
+      copy:
+        dest: /etc/sudoers.d/devops
+        content: 'devops ALL=(ALL) NOPASSWD: ALL'
+        validate: /usr/sbin/visudo -cf %s
+
+    - name: ssh key
+      authorized_key:
+        user: devops
+        state: present
+        manage_dir: true
+        key: "{{ lookup( 'file', '/home/devops/.ssh/id_rsa.pub') }}"
