@@ -4,7 +4,7 @@
  <img alt="Ansible Logo" src="image/ansible-architecture.png">
 </p>
 
-**This Repo contains many sample codes with explainations to help you find your need of ansible very easily and in a structured manner.**
+**This Repo contains many sample codes with explainations (Linux Configuration Managemnet)to help you find your need of ansible very easily and in a structured manner.**
 
 ## Published articles:
 
