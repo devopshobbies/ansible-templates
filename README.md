@@ -8,23 +8,21 @@
 
 ## Published articles:
 
- - [Ansible Tutorial - Part 0 - Getting Ready to Ansible Introduction]()
+ - [Ansible Tutorial - Part 0 - Getting Ready to Ansible]()
 
- - [Ansible Tutorial - Part 1 - User Management Introduction]()
+ - [Ansible Tutorial - Part 1 - User Management]()
 
- - [Ansible Tutorial - Part 2 - Update Introduction]()
+ - [Ansible Tutorial - Part 2 - Upgrade OS]()
  
- - [Ansible Tutorial - Part 3 - Manage Services Introduction]()
+ - [Ansible Tutorial - Part 3 - Manage Services]()
 
- - [Ansible Tutorial - Part 4 - Install Docker Introduction]()
+ - [Ansible Tutorial - Part 4 - Install Docker]()
  
- - [Ansible Tutorial - Part 5 - LAMP Stack Introduction]()
+ - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
 
- - [Ansible Tutorial - Part 6 - Package Management Introduction]()
+ - [Ansible Tutorial - Part 6 - Package Management]()
 
- - [Ansible Tutorial - Part 7 - Package Management Introduction]()
-
- - [Ansible Tutorial - Part 8 - Elasticsearch Introduction]()
+ - [Ansible Tutorial - Part 7 - Install Elasticsearch ]()
 
 
 ## Contributions:
