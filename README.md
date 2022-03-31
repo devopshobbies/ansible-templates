@@ -4,18 +4,25 @@
  <img alt="Ansible Logo" src="image/ansible-architecture.png">
 </p>
 
+**This Repo contains many sample codes with explainations (Linux Configuration Managemnet)to help you find your need of ansible very easily and in a structured manner.**
 
 ## Published articles:
 
- - [Ansible Tutorial - Part 1 - Create user Introduction]()
+ - [Ansible Tutorial - Part 0 - Getting Ready to Ansible]()
 
- - [Ansible Tutorial - Part 2 - Update Introduction]()
+ - [Ansible Tutorial - Part 1 - User Management]()
 
- - [Ansible Tutorial - Part 3 - Docker Introduction]()
+ - [Ansible Tutorial - Part 2 - Upgrade OS]()
+ 
+ - [Ansible Tutorial - Part 3 - Manage Services]()
 
- - [Ansible Tutorial - Part 4 - Docker Introduction]()
+ - [Ansible Tutorial - Part 4 - Install Docker]()
+ 
+ - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
 
- - [Ansible Tutorial - Part 5 - Elastic Search Introduction]()
+ - [Ansible Tutorial - Part 6 - Package Management]()
+
+ - [Ansible Tutorial - Part 7 - Install Elasticsearch ]()
 
 
 ## Contributions:
