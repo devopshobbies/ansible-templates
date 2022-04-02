@@ -18,7 +18,7 @@
 
  - [Ansible Tutorial - Part 4 - Install Docker]()
  
- - [Ansible Tutorial - Part 5 - Install LAMP Stack]() (In Progress)
+ - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
 
  - [Ansible Tutorial - Part 6 - Package Management]() (In Progress)
 
