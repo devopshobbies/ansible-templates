@@ -18,22 +18,20 @@
 
  - [Ansible Tutorial - Part 4 - Install Docker]()
  
- - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
+ - [Ansible Tutorial - Part 5 - Install LAMP Stack]() (In Progress)
 
- - [Ansible Tutorial - Part 6 - Package Management]()
+ - [Ansible Tutorial - Part 6 - Package Management]() (In Progress)
 
- - [Ansible Tutorial - Part 7 - Install Elasticsearch ]()
+ - [Ansible Tutorial - Part 7 - Install Elasticsearch]()
+ 
+ - [Ansible Tutorial - Part 8 - Cron Jobs ]() (In Progress)
+ 
+ - [Ansible Tutorial - Part 9 - Install Grafana]() (In Progress)
 
+ - [Ansible Tutorial - Part 9 - Install Zabbix]() (In Progress)
 
 ## Contributions:
 
 All contributions are welcomed. Help me to enrich this repository.
 
 If you find any **bugs** in the examples, please file an issue.
-
-### TODO:
-
- - [ ] Adding Ansible ...
- - [ ] Adding Ansible ...
-
-
