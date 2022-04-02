@@ -28,7 +28,7 @@
  
  - [Ansible Tutorial - Part 9 - Install Grafana]() (In Progress)
 
- - [Ansible Tutorial - Part 9 - Install Zabbix]() (In Progress)
+ - [Ansible Tutorial - Part 10 - Install Zabbix]() (In Progress)
 
 ## Contributions:
 
