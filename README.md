@@ -10,13 +10,13 @@
 
  - [Ansible Tutorial - Part 0 - Getting Ready to Ansible]()
 
- - [Ansible Tutorial - Part 1 - User Management]()
+ - [Ansible Tutorial - Part 1 - User Management]() (In Progress)
 
- - [Ansible Tutorial - Part 2 - Upgrade OS]()
+ - [Ansible Tutorial - Part 2 - Upgrade OS]() (In Progress)
  
- - [Ansible Tutorial - Part 3 - Manage Services]()
+ - [Ansible Tutorial - Part 3 - Manage Services]() (In Progress)
 
- - [Ansible Tutorial - Part 4 - Install Docker]()
+ - [Ansible Tutorial - Part 4 - Install Docker]() (In Progress)
  
  - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
 
