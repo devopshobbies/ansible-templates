@@ -1,0 +1,4 @@
+redis_port: "6379"
+redis_db_number: "16"
+redis_password: "PassWord"
+
