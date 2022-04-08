@@ -19,7 +19,7 @@ Examples
 
 To run a particular configuration:
 ```
-ansible-playbook  ansbile-learning.yml
+ansible-playbook  ansible-learning.yml
 ```
 
 ## Outcome
