@@ -1,0 +1,9 @@
+- name: Install Erlang
+  apt:
+    name: erlang
+    state: present
+
+- name: Install RabbitMQ Server
+  apt:
+    name: rabbitmq-server   
+    state: latest
