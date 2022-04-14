@@ -30,7 +30,10 @@
 
  - [Ansible Tutorial - Part 10 - Install Zabbix]() (In Progress)
  
- - [Ansible Tutorial - Part 11 - Install Redis]() 
+ - [Ansible Tutorial - Part 11 - Install Redis]()
+
+ - [Ansible Tutorial - Part 12 - Install RabbitMQ]() 
+ 
 
 ## Contributions:
 
