@@ -1,0 +1,6 @@
+rabbitmq_user_tag: "administrator"
+rabbitmq_startup_timeout: "600"
+rabbitmq_username: "UserName"
+rabbitmq_password: "PassWord"
+first_vhost: "test"
+file_to_publish: "/home/rojin/ansible-tutorial/part12-rabbitmq-install/pic.png"

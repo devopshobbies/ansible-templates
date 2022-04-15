@@ -1,0 +1,49 @@
+- name: Enable RabbitMQ managing dashboard
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
+
+- name: Define a RabbitMQ virtual host
+  rabbitmq_vhost:
+    name: "{{ first_vhost }}"
+    state: present
+
+- name: Create user on RabbitMQ server 
+  rabbitmq_user:
+    user: "{{ rabbitmq_username }}"
+    password: "{{ rabbitmq_password }}"
+    tags: "{{ rabbitmq_user_tag }}"
+    vhost: "{{ item }}"
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+  loop:
+    - /
+    - "{{ first_vhost }}"
+
+- name: Create a queue
+  rabbitmq_queue:
+    name: "my_queue"
+    vhost: "{{ first_vhost }}"
+    login_user: "{{ rabbitmq_username }}"
+    login_password: "{{ rabbitmq_password }}"
+    durable: yes
+    state: present
+
+- name: Publish an image to the defined queue
+  rabbitmq_publish:
+    url: "amqp://{{ rabbitmq_username }}:{{ rabbitmq_password }}@localhost:5672/{{ first_vhost }}"
+    queue: "{{ first_vhost }}"
+    file: "{{ file_to_publish }}"
+
+- name: Remove guest user on RabbitMQ server
+  rabbitmq_user:
+    user: guest
+    password: guest
+    tags: administrator
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: absent
