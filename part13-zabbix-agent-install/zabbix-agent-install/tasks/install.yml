@@ -1,0 +1,4 @@
+- name: Install the .deb package
+  apt:
+    deb: "{{ zabbix_agent_deb }}"
+ 
