@@ -26,7 +26,7 @@
  
  - [Ansible Tutorial - Part 8 - Cron Jobs ] (In Progress)
  
- - [Ansible Tutorial - Part 9 - Install Grafana] (In Progress)
+ - [Ansible Tutorial - Part 9 - Install Grafana] (./part09-grafana-install)
 
  - [Ansible Tutorial - Part 10 - Install Zabbix] (In Progress)
  
