@@ -34,6 +34,8 @@
 
  - [Ansible Tutorial - Part 12 - Install RabbitMQ]() 
  
+ - [Ansible Tutorial - Part 13 - Install Zabbix-Agent]() 
+ 
 
 ## Contributions:
 

@@ -1,0 +1,14 @@
+- name: Configure the agent
+  template:
+    src: "zabbix_agentd.conf.j2"
+    dest: "/etc/zabbix/zabbix_agentd.conf"
+  notify: Restart Zabbix-Agent
+
+- name: Check agent port status
+  shell: "netstat -nlpt | grep 10050"
+ 
+- name: Check agent service status
+  service:
+    name: zabbix-agent
+    state: started
+  

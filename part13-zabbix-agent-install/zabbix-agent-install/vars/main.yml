@@ -1,0 +1,4 @@
+zabbix_hostname: "My Zabbix"
+server_address: "127.0.0.1"
+server_active_address: "127.0.0.1"
+zabbix_agent_deb: "https://repo.zabbix.com/zabbix/5.4/ubuntu/pool/main/z/zabbix/zabbix-agent_5.4.7-1+ubuntu18.04_amd64.deb"
