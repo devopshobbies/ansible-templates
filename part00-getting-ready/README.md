@@ -11,7 +11,7 @@ Simple ansible configuration of base systems accorss different environments.
 ### initial step
 Try this command to add your users key to the server so you can connect to it using your workstation.
 ```
-ansible all -k -K -m authorized_key -a "user='your_username' state='present' key='{{lookup('file', ~/.ssh/id_rsa.pub)}}'"
+ansible all -k -K -m authorized_key -a "user='your_username' state='present' key='{{lookup('file', '~/.ssh/id_rsa.pub')}}'"
 ```
 
 Examples
