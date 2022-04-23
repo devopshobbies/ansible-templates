@@ -8,33 +8,33 @@
 
 ## Published articles:
 
- - [Ansible Tutorial - Part 0 - Getting Ready to Ansible]()
+ - [Ansible Tutorial - Part 0 - Getting Ready to Ansible](./part00-getting-ready/)
 
- - [Ansible Tutorial - Part 1 - User Management]() (In Progress)
+ - [Ansible Tutorial - Part 1 - User Management] (In Progress)
 
- - [Ansible Tutorial - Part 2 - Upgrade OS]() (In Progress)
+ - [Ansible Tutorial - Part 2 - Upgrade OS] (In Progress)
  
- - [Ansible Tutorial - Part 3 - Manage Services]() (In Progress)
+ - [Ansible Tutorial - Part 3 - Manage Services] (In Progress)
 
- - [Ansible Tutorial - Part 4 - Install Docker]() (In Progress)
+ - [Ansible Tutorial - Part 4 - Install Docker] (In Progress)
  
- - [Ansible Tutorial - Part 5 - Install LAMP Stack]()
+ - [Ansible Tutorial - Part 5 - Install LAMP Stack](./part05-lamp-stack-install/)
 
- - [Ansible Tutorial - Part 6 - Package Management]() (In Progress)
+ - [Ansible Tutorial - Part 6 - Package Management] (In Progress)
 
- - [Ansible Tutorial - Part 7 - Install Elasticsearch]()
+ - [Ansible Tutorial - Part 7 - Install Elasticsearch](./part07-elasticsearch-install/)
  
- - [Ansible Tutorial - Part 8 - Cron Jobs ]() (In Progress)
+ - [Ansible Tutorial - Part 8 - Cron Jobs ] (In Progress)
  
- - [Ansible Tutorial - Part 9 - Install Grafana]() (In Progress)
+ - [Ansible Tutorial - Part 9 - Install Grafana] (In Progress)
 
- - [Ansible Tutorial - Part 10 - Install Zabbix]() (In Progress)
+ - [Ansible Tutorial - Part 10 - Install Zabbix] (In Progress)
  
- - [Ansible Tutorial - Part 11 - Install Redis]()
+ - [Ansible Tutorial - Part 11 - Install Redis](./part11-redis-install)
 
- - [Ansible Tutorial - Part 12 - Install RabbitMQ]() 
+ - [Ansible Tutorial - Part 12 - Install RabbitMQ](./part12-rabbitmq-install) 
  
- - [Ansible Tutorial - Part 13 - Install Zabbix-Agent]() 
+ - [Ansible Tutorial - Part 13 - Install Zabbix-Agent](./part13-zabbix-agent-install) 
  
 
 ## Contributions:
