@@ -1,4 +1,0 @@
-- name: adding hostname
-  hostname:
-    name: '{{item.name}}'
-  with_items: '{{hosts}}'
