@@ -14,7 +14,7 @@
 
  - [Ansible Tutorial - Part 2 - Upgrade OS] (In Progress)
  
- - [Ansible Tutorial - Part 3 - Manage Services] (In Progress)
+ - [Ansible Tutorial - Part 3 - Basic configration] (In Progress)
 
  - [Ansible Tutorial - Part 4 - Install Docker] (In Progress)
  
