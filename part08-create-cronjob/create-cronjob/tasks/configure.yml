@@ -6,6 +6,6 @@
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ job_path }} > {{ log_path }} 2>&1"
+    job: "{{ job_path }} >> {{ log_path }} 2>&1"
     user: root
 
