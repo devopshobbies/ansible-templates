@@ -1,0 +1,7 @@
+---
+- hosts: Servers
+  gather_facts: no
+  become: yes
+  
+  roles:
+    - create-cronjob
