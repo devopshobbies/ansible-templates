@@ -10,13 +10,13 @@
 
  - [Ansible Tutorial - Part 0 - Getting Ready to Ansible](./part00-getting-ready/)
 
- - [Ansible Tutorial - Part 1 - User Management] (In Progress)
+ - [Ansible Tutorial - Part 1 - User Management](./part01-create-user/)
 
  - [Ansible Tutorial - Part 2 - Upgrade OS] (In Progress)
  
  - [Ansible Tutorial - Part 3 - Basic configration] (In Progress)
 
- - [Ansible Tutorial - Part 4 - Install Docker] (In Progress)
+ - [Ansible Tutorial - Part 4 - Install Docker](./part04-docker-install/)
  
  - [Ansible Tutorial - Part 5 - Install LAMP Stack](./part05-lamp-stack-install/)
 
