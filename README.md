@@ -24,7 +24,7 @@
 
  - [Ansible Tutorial - Part 7 - Install Elasticsearch](./part07-elasticsearch-install/)
  
- - [Ansible Tutorial - Part 8 - Cron Jobs ] (In Progress)
+ - [Ansible Tutorial - Part 8 - Cron Jobs ](./part08-create-cronjob/)
  
  - [Ansible Tutorial - Part 9 - Install Grafana](./part09-grafana-install)
 
