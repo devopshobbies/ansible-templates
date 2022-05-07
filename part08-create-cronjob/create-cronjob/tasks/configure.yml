@@ -1,0 +1,11 @@
+- name: Install cronjob
+  cron:
+    name: Check host memory
+    minute: "15"
+    hour: "10"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: "{{ job_path }} >> {{ log_path }} 2>&1"
+    user: root
+

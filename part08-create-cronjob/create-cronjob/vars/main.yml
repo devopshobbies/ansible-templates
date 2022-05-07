@@ -1,0 +1,2 @@
+log_path: "/home/rojin/Desktop/cron.log"
+job_path: "/home/rojin/Desktop/check-memory.sh"
