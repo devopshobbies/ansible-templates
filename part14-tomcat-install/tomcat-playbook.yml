@@ -1,0 +1,71 @@
+- name: ----- install java -----
+  yum:
+        name: java-1.8.0-openjdk-devel
+        state: present
+  tags: install_java
+
+- name: ----- download apache tomcat-----
+  get_url:
+        url: "{{tomcat_url}}"
+        dest: /opt
+  tags: dl_tomcat
+
+- name: ----- extract & install apache tomcat -----
+  unarchive:
+        src: "{{tomcat_path}}.tar.gz"
+        dest: /opt
+        remote_src: yes
+  tags: tomcat_ext
+
+- name: ----- set a softlink for tomcat -----
+  file:
+        src: "{{tomcat_path}}"
+        dest: /opt/tomcat
+        state: link
+  tags: tomcat_softlink
+
+- name: ----- create tomcat service via template -----
+  template:
+        src: tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
+  tags: tomcat_service
+
+- name: ----- create tomcat service via template -----
+  template:
+        src: server.xml.j2
+        dest: /opt/tomcat/conf/server.xml
+  tags: tomcat_service
+
+- name: ----- daemon reload -----
+  systemd:
+        daemon_reload: yes
+  tags: daemon
+
+- name: ----- enable & start tomcat service -----
+  service:
+        name: tomcat
+        enabled: yes
+        state: started
+  tags: start_tomcat
+- name: ----- download waar file for tomcat-----
+  get_url:
+        url: "https://github.com/efsavage/hello-world-war/raw/master/dist/hello-world.war"
+        dest: /opt/tomcat/webapps
+  tags: dl_war
+
+- name: ----- open port 80 via iptables module -----
+  iptables:
+        chain: INPUT
+        protocol: TCP
+        destination_port: "80"
+        jump: ACCEPT
+        action: insert
+        state: present
+  tags: open_port_80
+
+- name: ----- restart tomcat service -----
+  service:
+        name: tomcat
+        state: restarted
+  tags: tomcat_restart
+
