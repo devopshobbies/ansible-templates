@@ -36,7 +36,7 @@
  
  - [Ansible Tutorial - Part 13 - Install Zabbix-Agent](./part13-zabbix-agent-install) 
  
- - [Ansible Tutorial - Part 14 - Install Tomcat] (In Progress) 
+ - [Ansible Tutorial - Part 14 - Install Tomcat](./part14-tomcat-install/) 
 
 ## Contributions:
 
