@@ -1,0 +1,46 @@
+- name: install yum-utils (redhat)
+  yum: name=yum-utils state=latest
+  ignore_errors: true
+  when: distro == 'redhat'
+
+- name: install aptitude (debian)
+  apt: name=aptitude state=latest 
+  ignore_errors: true
+  when: distro == 'debian'
+
+- name: install required system packages (debian)
+  apt: name={{ item }} state=latest
+  loop: [ 'gnupg', 'ca-certificates', 'curl', 'lsb-release']
+  when: distro == 'debian'
+
+
+- name: add Docker Repository (redhat)
+  shell: yum-config-manager --add-repo https://download.docker.com/linux/redhat/docker-ce.repo
+  when: distro == 'redhat'
+
+- name: add Docker GPG Key (debian)
+  shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  args:
+    warn: false
+  when: distro == 'debian'
+
+- name: add Docker Repository (debian)
+  shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  when: distro == 'debian'
+
+
+- name: install docker-ce and other packages (redhat)
+  yum: name={{ item }} state=latest update_cache=yes
+  loop: [ 'docker-ce', 'docker-ce-cli', 'containerd.io']
+  notify: restart service
+  when: distro == 'redhat'
+
+- name: install docker-ce and other packages (debian)
+  apt: name={{ item }} state=latest update_cache=yes force=yes
+  loop: [ 'docker-ce', 'docker-ce-cli', 'containerd.io']
+  notify: restart service
+  when: distro == 'debian'
+
+
+- name: install docker-compose
+  get_url: url={{ docker_compose_download_url }} dest=/usr/local/bin/docker-compose mode='u+x,g+x'

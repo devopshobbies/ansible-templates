@@ -1,0 +1,8 @@
+- include: install.yml
+  tags: docker-swarm-install
+
+- include: prepaire.yml
+  tags: docker-swarm-config
+
+- include: create.yml
+  tags: docker-swarm-config

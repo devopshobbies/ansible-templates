@@ -1,0 +1,40 @@
+- name: initialize swarm cluster
+  shell: >
+    docker swarm init
+    --advertise-addr={{ hostvars[play_hosts[0]]['local_ip'] | default('eth1') }}:2377
+  when: "'swarm_manager_operational' not in groups"
+  register: bootstrap_first_node
+  run_once: true
+
+- name: add initialized host to swarm_manager_operational group
+  add_host:
+    hostname: "{{ play_hosts[0] }}"
+    groups: swarm_manager_operational
+  when: bootstrap_first_node.changed
+  run_once: true
+
+- name: retrieve swarm manager token
+  shell: docker swarm join-token -q manager
+  register: swarm_manager_token
+  run_once: true
+
+- name: retrieve swarm worker token
+  shell: docker swarm join-token -q worker
+  register: swarm_worker_token
+  run_once: true
+
+- name: join manager nodes to cluster
+  shell: >
+    docker swarm join
+    --advertise-addr={{ local_ip | default('eth1') }}:2377
+    --token={{ swarm_manager_token.stdout }}
+    {{ hostvars[play_hosts[0]]['local_ip'] }}:2377
+  when: (role == 'manager') and (inventory_hostname not in (groups['swarm_manager_operational'] | default([])) )
+
+- name: join worker nodes to cluster
+  shell: >
+    docker swarm join
+    --advertise-addr={{ local_ip | default('eth1') }}:2377
+    --token={{ swarm_worker_token.stdout }}
+    {{ hostvars[play_hosts[0]]['local_ip'] }}:2377
+  when: (role == 'worker') and (inventory_hostname not in (groups['swarm_worker_operational'] | default([])) )

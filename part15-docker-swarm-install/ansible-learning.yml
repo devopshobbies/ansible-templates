@@ -1,0 +1,9 @@
+---
+- hosts: cluster 
+  gather_facts: no
+  become: yes
+  
+  roles:
+    - role: docker-swarm-install
+      vars:
+        distro: debian
