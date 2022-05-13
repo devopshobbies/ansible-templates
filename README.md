@@ -12,7 +12,7 @@
 
  - [Ansible Tutorial - Part 1 - User Management](./part01-create-user/)
 
- - [Ansible Tutorial - Part 2 - Upgrade OS] (In Progress)
+ - [Ansible Tutorial - Part 2 - Upgrade OS](./part02-update-linux/)
  
  - [Ansible Tutorial - Part 3 - Basic configration] (In Progress)
 
