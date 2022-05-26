@@ -1,0 +1,11 @@
+---
+- name: Upgrade linux.
+  hosts: all
+  become: true
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - include_tasks: 'tasks/update-{{ ansible_os_family }}.yml'
+    - include_tasks: 'tasks/reboot.yml'

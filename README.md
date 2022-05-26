@@ -12,7 +12,7 @@
 
  - [Ansible Tutorial - Part 1 - User Management](./part01-create-user/)
 
- - [Ansible Tutorial - Part 2 - Upgrade OS] (In Progress)
+ - [Ansible Tutorial - Part 2 - Upgrade OS](./part02-update-linux/)
  
  - [Ansible Tutorial - Part 3 - Basic configration] (In Progress)
 
@@ -24,7 +24,7 @@
 
  - [Ansible Tutorial - Part 7 - Install Elasticsearch](./part07-elasticsearch-install/)
  
- - [Ansible Tutorial - Part 8 - Cron Jobs ] (In Progress)
+ - [Ansible Tutorial - Part 8 - Cron Jobs ](./part08-create-cronjob/)
  
  - [Ansible Tutorial - Part 9 - Install Grafana](./part09-grafana-install)
 
@@ -36,6 +36,7 @@
  
  - [Ansible Tutorial - Part 13 - Install Zabbix-Agent](./part13-zabbix-agent-install) 
  
+ - [Ansible Tutorial - Part 14 - Install Tomcat](./part14-tomcat-install/) 
 
 ## Contributions:
 

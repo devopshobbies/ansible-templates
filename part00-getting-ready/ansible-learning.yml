@@ -14,6 +14,11 @@
         content: 'devops ALL=(ALL) NOPASSWD: ALL'
         validate: /usr/sbin/visudo -cf %s
 
+    - name: set up bash as default shell for user.
+      user:
+        name: devops
+        shell: /bin/bash
+
     - name: ssh key
       authorized_key:
         user: devops

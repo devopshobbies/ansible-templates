@@ -1,0 +1,40 @@
+- name: determine swarm status
+  shell: >
+    docker info 2>&1  | egrep '^.*Swarm: ' | awk '{$1=$1};1' | cut -d ' ' -f2
+  register: swarm_status
+
+- name: swarm_status
+  debug:
+    var: swarm_status.stdout
+
+- name: create swarm_manager_operational group
+  add_host:
+    hostname: "{{ item }}"
+    groups: swarm_manager_operational
+  with_items: "{{ play_hosts }}"
+  when: (hostvars[item]['role'] == 'manager') and (hostvars[item]['swarm_status']['stdout'] == 'active')
+  run_once: true
+
+- name: create swarm_manager_bootstrap group
+  add_host:
+    hostname: "{{ item }}"
+    groups: swarm_manager_bootstrap
+  with_items: "{{ play_hosts }}"
+  when: (hostvars[item]['role'] == 'manager') and (hostvars[item]['swarm_status']['stdout'] == 'inactive')
+  run_once: true
+
+- name: create swarm_worker_operational group
+  add_host:
+    hostname: "{{ item }}"
+    groups: swarm_worker_operational
+  with_items: "{{ play_hosts }}"
+  when: (hostvars[item]['role'] == 'worker') and (hostvars[item]['swarm_status']['stdout'] == 'active')
+  run_once: true
+
+- name: create swarm_worker_bootstrap group
+  add_host:
+    hostname: "{{ item }}"
+    groups: swarm_worker_bootstrap
+  with_items: "{{ play_hosts }}"
+  when: (hostvars[item]['role'] == 'worker') and (hostvars[item]['swarm_status']['stdout'] == 'inactive')
+  run_once: true
