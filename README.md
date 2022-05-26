@@ -37,6 +37,8 @@
  - [Ansible Tutorial - Part 13 - Install Zabbix-Agent](./part13-zabbix-agent-install) 
  
  - [Ansible Tutorial - Part 14 - Install Tomcat](./part14-tomcat-install/) 
+ 
+ - [Ansible Tutorial - Part 17 - Install LEMP Stack](./part17-lemp-stack-install/)
 
 ## Contributions:
 
