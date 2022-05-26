@@ -1,0 +1,11 @@
+---
+- hosts: Servers
+  gather_facts: no
+  become: yes
+  
+  roles:
+    - update_packages
+    - firewall
+    - nginx
+    - mysql
+    - wordpress

@@ -1,0 +1,25 @@
+- name: Create Nginx directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: 
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
+
+- name: Configure Nginx
+  template:
+    src: "nginx.conf.j2"
+    dest: "/etc/nginx/sites-available/{{ wp_conf_dir }}"
+
+- name: Enable Nginx configuration
+  file:
+    src: "/etc/nginx/sites-available/{{ wp_conf_dir }}"  
+    dest: "/etc/nginx/sites-enabled/{{ wp_conf_dir }}"
+    state: link
+
+- name: Unlink default Nginx
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  notify: Restart Nginx  

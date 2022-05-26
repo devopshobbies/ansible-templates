@@ -1,0 +1,10 @@
+- name: Configure SSH firewall
+  ufw:
+    rule: allow
+    name: "OpenSSH"
+  notify: Reload firewall
+
+- name: Enable firewall
+  ufw:
+    state: enabled
+    

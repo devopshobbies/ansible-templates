@@ -1,0 +1,17 @@
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+  loop:
+    - python3-mysqldb
+    - nginx
+    - mysql-server
+    - php-fpm
+    - php-mysql
+    - php-curl
+    - php-gd
+    - php-intl
+    - php-mbstring
+    - php-soap
+    - php-xml
+    - php-xmlrpc
+    - php-zip

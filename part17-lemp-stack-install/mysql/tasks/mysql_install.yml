@@ -1,0 +1,38 @@
+- name: Set root password in MYSQL
+  mysql_user:
+    name: root
+    password: "{{ mysql_password }}"
+    login_user: root
+    login_password: "{{ mysql_password }}"
+    login_unix_socket: "/var/run/mysqld/mysqld.sock"
+
+- name: Remove all MYSQL anonymous users
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_password }}"
+  
+- name: Remove MySQL test database
+  mysql_db:
+    name: test
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_password }}"
+
+- name: Create new database
+  mysql_db:
+    name: "{{ wp_db_name }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_password }}"
+
+- name: Create WordPress user
+  mysql_user:
+    name: "{{ wp_db_user }}"
+    password: "{{ wp_db_password }}"
+    priv: "*.*:ALL,GRANT"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_password }}"

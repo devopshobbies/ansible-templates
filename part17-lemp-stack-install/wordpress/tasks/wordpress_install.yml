@@ -1,0 +1,41 @@
+- name: Create directory
+  file:
+    path: "/var/www/{{ wp_conf_dir }}"
+    state: directory
+
+- name: Download WordPress zip
+  get_url:
+    url: "https://wordpress.org/{{ wp_file }}"
+    dest: "/tmp/{{ wp_file }}"
+
+- name: Extract WordPress
+  unarchive:
+    src: "/tmp/{{ wp_file }}"
+    dest: "/var/www/"
+    creates: "/var/www/{{ wp_conf_dir }}/wp-login.php"
+        
+- name: Configure wp-config.php
+  template:
+    src: "wp-config.php.j2"
+    dest: "/var/www/{{ wp_conf_dir }}/wp-config.php"     
+    
+- name: Install WP-CLI
+  get_url:
+    url: "{{ wp_cli_url }}"
+    dest: "/usr/local/bin/wp"
+    mode: 0755
+
+- name: Change directory to /var/www/wordpress and install WP
+  command: wp core install --url="{{ wp_host }}" --title="{{ wp_title }}" --admin_user="{{ wp_admin_user }}" --admin_email={{ wp_admin_email }} --admin_password="{{ wp_admin_password }}" --path="/var/www/{{ wp_conf_dir }}" --allow-root
+  args:
+    chdir: "/var/www/{{ wp_conf_dir }}"
+   
+- name: Configure WordPress theme
+  command: wp theme install "{{ wp_theme }}" --activate --path="/var/www/{{ wp_conf_dir }}" --allow-root
+ 
+- name: Setup privileges
+  file: 
+    dest: "/var/www/{{ wp_conf_dir }}" 
+    owner: www-data 
+    group: www-data 
+    recurse: yes

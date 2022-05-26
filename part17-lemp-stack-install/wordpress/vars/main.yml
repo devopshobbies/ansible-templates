@@ -1,0 +1,21 @@
+---
+# WP CREDENTIALS
+wp_host: "192.168.50.7"
+wp_conf_dir: "wordpress"
+wp_file: "wordpress-5.7.1.tar.gz"
+
+# WP CLI CREDENTIALS
+wp_cli_url: "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
+wp_cli_file: "wp-cli.phar"
+wp_title: "Setup WordPress"
+wp_admin_user: "admin"
+wp_admin_email: "admin@test.com"
+wp_admin_password: "!2three456."
+wp_theme: "twentynineteen"
+
+# WP DATABASE CREDENTIALS
+mysql_password: "Qw9M#sL!B"
+wp_db_name: "wordpress"
+wp_db_password: "password"
+wp_db_user: "wordpressuser"
+wp_db_host: "localhost"
