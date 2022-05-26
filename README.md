@@ -38,6 +38,8 @@
  
  - [Ansible Tutorial - Part 14 - Install Tomcat](./part14-tomcat-install/) 
  
+ - [Ansible Tutorial - Part 15 - Install Docker Swarm](./part15-docker-swarm-install/)
+ 
  - [Ansible Tutorial - Part 17 - Install LEMP Stack](./part17-lemp-stack-install/)
 
 ## Contributions:
