@@ -1,0 +1,5 @@
+---
+hostname: example.com
+project_name: example.com
+nginx_port: 80
+mysql_root_password: mysamplepassword
