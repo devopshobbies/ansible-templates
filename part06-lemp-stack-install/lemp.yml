@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+  - name: update_server
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Debian"
+
+- hosts: lemp_servers
+  become: true
+  roles:
+    - nginx
+    - php
+    - mysql
+    - tweaks

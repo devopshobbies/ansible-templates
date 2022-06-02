@@ -1,0 +1,134 @@
+  - name: copy php defult page
+    copy:
+      src: index.php
+      dest: /var/www/{{ project_name }}/index.php
+      owner: www-data 
+      group: www-data
+      mode: 0644
+
+  - name: fix folder permissions
+    shell: find /var/www/{{ project_name }} -type d -exec chmod 755 {} \;
+
+  - name: fix files permissions
+    shell: find /var/www/{{ project_name }} -type f -exec chmod 644 {} \;
+
+  - name: fix files owners
+    shell: chown -R www-data:www-data /var/www/
+    
+  - name: Tweak PHP 1 0f 18
+    lineinfile:
+      path: /etc/php/8.0/cli/php.ini
+      regexp: 'error_reporting = .*'
+      line: error_reporting = E_ALL
+
+  - name: Tweak PHP 2 0f 18
+    lineinfile:
+      path: /etc/php/8.0/cli/php.ini
+      regexp: 'display_errors = .*'
+      line: display_errors = On
+
+  - name: Tweak PHP 3 0f 18
+    lineinfile:
+      path: /etc/php/8.0/cli/php.ini
+      regexp: 'memory_limit = .*'
+      line: memory_limit = 512M
+
+  - name: Tweak PHP 4 0f 18
+    lineinfile:
+      path: /etc/php/8.0/cli/php.ini
+      regexp: ';date.timezone.*'
+      line: date.timezone = Asia/Tehran
+  
+  - name: Tweak PHP 5 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: 'error_reporting = .*'
+      line: error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED
+
+  - name: Tweak PHP 6 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: 'display_errors = .*'
+      line: display_errors = Off
+
+  - name: Tweak PHP 7 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: 'memory_limit = .*'
+      line: memory_limit = 512M
+
+  - name: Tweak PHP 8 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: 'upload_max_filesize = .*'
+      line: upload_max_filesize = 256M
+
+
+  - name: Tweak PHP 9 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: 'post_max_size = .*'
+      line: post_max_size = 256M
+
+  - name: Tweak PHP 10 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/php.ini
+      regexp: ';date.timezone.*'
+      line: date.timezone = Asia/Tehran
+
+  - name: Tweak PHP 11 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: ';listen\.mode =.*'
+      line: listen.mode = 0666
+
+  - name: Tweak PHP 12 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: ';request_terminate_timeout =.*'
+      line: request_terminate_timeout = 60
+
+  - name: Tweak PHP 14 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: 'pm\.max_children =.*'
+      line: pm.max_children = 70
+
+  - name: Tweak PHP 15 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: 'pm\.start_servers =.*'
+      line: pm.start_servers = 20
+
+  - name: Tweak PHP 16 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: 'pm\.min_spare_servers =.*'
+      line: pm.min_spare_servers = 20
+
+  - name: Tweak PHP 17 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: 'pm\.max_spare_servers =.*'
+      line: pm.max_spare_servers = 35
+
+  - name: Tweak PHP 18 0f 18
+    lineinfile:
+      path: /etc/php/8.0/fpm/pool.d/www.conf
+      regexp: ';pm\.max_requests =.*l'
+      line: pm.max_requests = 500
+
+  - name: Tweak nginx 1 of 4
+    lineinfile:
+      path: /etc/nginx/nginx.conf
+      regexp: 'worker_processes.*'
+      line: worker_processes auto;
+
+  - name: Tweak nginx 2 of 4
+    lineinfile:
+      path: /etc/nginx/nginx.conf
+      regexp: '# multi_accept.*'
+      line: multi_accept on;
+    notify:
+      - restart_nginx
+      - restart_php
