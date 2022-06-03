@@ -1,0 +1,12 @@
+  - name: remove unwanted packages
+    apt:
+      name: apache2
+      state: absent
+
+  - name: remove nginx default config
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+  
+  - name: config zabbix nginx
+    template: src=zabbix_nginx.conf dest=/etc/nginx/conf.d/zabbix_nginx.conf
