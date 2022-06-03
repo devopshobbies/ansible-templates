@@ -1,0 +1,13 @@
+
+  - name: restart_zabbix_services
+    service:
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+    become: true
+    loop:
+      - mariadb
+      - nginx
+      - php7.4-fpm
+      - zabbix-server
+      - zabbix-agent

@@ -1,0 +1,56 @@
+- name: install database
+  apt:
+    name: 
+    - mariadb-server
+    - python3-pip
+
+- name: install pymysql
+  shell: python3 -m pip install pymysql
+
+- name: Sets the root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Removes the MySQL test database
+  mysql_db:
+    name: test
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+      
+- name: Removes all anonymous user accounts
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+  notify: restart_mysql
+
+- name: Create zabbix database
+  mysql_db:
+    name: "{{ mysql_zabbix_database }}"
+    login_user: root
+    login_password: "{{  mysql_root_password  }}"
+    encoding: utf8mb4
+    collation: utf8mb4_bin
+    state: present
+
+- name: set mysql zabbix user
+  mysql_user:
+    name: "{{ mysql_zabbix_user }}"
+    password: "{{ mysql_zabbix_password }}"
+    priv: "{{ mysql_zabbix_database }}.*:ALL,GRANT"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}" 
+
+- name: import zabbix database
+  mysql_db:
+    name: "{{ mysql_zabbix_database }}"
+    state: import
+    target: /usr/share/doc/zabbix-sql-scripts/mysql/server.sql.gz
+    login_user: "{{ mysql_zabbix_user }}"
+    login_password: "{{ mysql_zabbix_password }}"
