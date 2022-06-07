@@ -1,0 +1,11 @@
+---
+- name: Install python
+  hosts: python
+  become: true
+  gather_facts: no
+  pre_tasks:
+  - name: Install python
+    #raw: 'cat ./script.sh'
+    raw: "{{ lookup('file', 'script.sh') }}"
+    args:
+      executable: /bin/bash
