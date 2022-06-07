@@ -1,0 +1,59 @@
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools', 'build-essential']
+
+    - name: Add buster backports
+      apt_repository:
+        repo: deb http://deb.debian.org/debian buster-backports main
+        state: present
+
+    - name: install libseccomp2
+      apt:
+        name: "{{item}}"
+#        state: latest
+        update_cache: yes
+      loop:
+        - libseccomp2
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/debian buster stable
+        state: present
+
+    - name: install containerd
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - containerd.io
+
+
+    - name: install docker
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+
+    - name: Ensure docker is enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+    
+    - name: Install docker-compose
+      get_url: 
+        url : https://github.com/docker/compose/releases/download/{{ compose_version }}/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x'
