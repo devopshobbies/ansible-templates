@@ -1,0 +1,29 @@
+#################################################
+# DO Community Playbooks: Docker
+#################################################
+---
+- hosts: all
+  become: true
+  vars_files:
+    - ../vars/docker.yml
+#- name: os specific vars
+#  include_vars: "{{ 'ansible_distribution'-'ansible_distribution_major_version' | lower }}"
+
+  tasks:  
+    - name: os specific tasks
+      include: "{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}.yml"
+
+    - name: Alias fig to command docker compose
+      lineinfile:
+        path=/root/.bashrc
+        line="alias fig='docker-compose'"
+        owner=root
+        regexp='^alias docker-compose'
+        state=present
+        insertafter=EOF
+        create=True
+
+    - name: Source .bashrc
+      shell: "source /root/.bashrc"
+      args:
+        executable: /bin/bash
