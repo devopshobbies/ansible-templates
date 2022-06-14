@@ -1,0 +1,5 @@
+mysql_root_new_password: "1mysqlRootPassword!"
+mysql_user: "root"
+mysql_mattermost_database: "mattermost"
+mysql_mattermost_user: "mmuser"
+mysql_mattermost_password: "1mysqlMattermostPassword!"
