@@ -20,7 +20,7 @@
  
  - [Ansible Tutorial - Part 5 - Install LAMP Stack](./part05-lamp-stack-install/)
 
- - [Ansible Tutorial - Part 6 - Package Management] (In Progress)
+ - [Ansible Tutorial - Part 6 - Install LEMP Stack](./part06-lemp-stack-install)
 
  - [Ansible Tutorial - Part 7 - Install Elasticsearch](./part07-elasticsearch-install/)
  
@@ -28,7 +28,7 @@
  
  - [Ansible Tutorial - Part 9 - Install Grafana](./part09-grafana-install)
 
- - [Ansible Tutorial - Part 10 - Install Zabbix] (In Progress)
+ - [Ansible Tutorial - Part 10 - Install Zabbix](./part10-zabbix-install)
  
  - [Ansible Tutorial - Part 11 - Install Redis](./part11-redis-install)
 
