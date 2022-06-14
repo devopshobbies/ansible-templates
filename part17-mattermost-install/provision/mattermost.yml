@@ -1,0 +1,4 @@
+---
+- hosts: target
+  roles:
+        - mattermost
