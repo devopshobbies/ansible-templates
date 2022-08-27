@@ -1,0 +1,21 @@
+---
+# handlers file for k8s-worker
+- name: start chrony
+  service:
+    name: "chrony.service"
+    state: started
+    enabled: true
+
+- name: reload systemd daemon
+  systemd:
+    daemon_reload: true
+
+- name: restart Docker
+  service:
+    name: docker
+    state: restarted
+
+- name: restart kubelet
+  service:
+    name: kubelet
+    state: restarted

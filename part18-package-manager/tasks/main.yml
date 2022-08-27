@@ -1,0 +1,29 @@
+---
+# tasks file for part18-package-manager
+- name: Set apt proxy config
+  copy:
+    src: 05proxy
+    dest: /etc/apt/apt.conf.d/05proxy
+    mode: 0644
+  when:
+    - (ansible_distribution|string == 'Ubuntu' or ansible_distribution|string == 'Debian')
+    
+- name: Installing APT pkgs
+  apt:
+    force: yes
+    autoremove: yes
+    pkg: "{{ item }}"
+  with_items: "{{ pkgs_list }}"
+  when:
+    - (ansible_distribution|string == 'Ubuntu' or ansible_distribution|string == 'Debian')
+    - action == "install"
+
+- name: Update and Upgrade APT pkgs
+  apt:
+    update_cache: true
+    upgrade: true
+    dpkg_options: 'force-confold,force-confdef'
+    autoremove: true
+  when:
+    - (ansible_distribution|string == 'Ubuntu') or (ansible_distribution|string == 'Debian')
+    - action == "update"

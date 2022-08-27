@@ -1,0 +1,16 @@
+- name: Create Directory scripts
+  file:
+    path: /etc/zabbix/scripts
+    state: directory
+
+- name: Copy Zabbix Discovery Script
+  copy:
+    src: discovery.sh
+    dest: /etc/zabbix/scripts/discovery.sh
+    mode: 0755
+
+- name: Copy Apt Monitoring Config
+  copy:
+    src: apt.conf
+    dest: /etc/zabbix/zabbix_agent2.d/apt.conf
+    mode: 0644

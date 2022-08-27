@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Hamid Jahadi
+  description: Install & Update Packages (APT)
+  company: Neshan
+
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: "2.1"
+
+  platforms:
+   - name: Ubuntu
+   - name: Debian
+
+  galaxy_tags: 
+    - apt-pkg
+
+allow_duplicates: true

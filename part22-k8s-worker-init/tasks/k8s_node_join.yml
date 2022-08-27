@@ -1,0 +1,13 @@
+# Get Join Command And Join Node to K8S Cluster
+- name: Get Join command
+  register: k8s_cmd_join
+  command: kubeadm token create --print-join-command
+  delegate_to: "{{ item }}"
+  with_items: "{{groups['K8SMaster']}}"
+  when: k8s_cmd_join.rc|d(1)!= 0
+  
+- set_fact:
+    k8s_join: "{{ k8s_cmd_join.results[0] }}"
+
+- name: Join to Kuber
+  command: "{{ k8s_join.stdout }}"

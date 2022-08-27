@@ -1,0 +1,21 @@
+---
+# tasks file for part20-config-pg-hba
+- name: Add pg_hba Rule
+  postgresql_pg_hba:
+    dest: "{{config_path}}"
+    contype: host
+    order: dus
+    databases: all
+    users: all
+    source: "{{source_ip}}"
+    netmask: 255.255.255.255
+    method: md5
+  delegate_to: "{{server_ip}}"
+  register: svc_control
+
+- name: Reload PostgreSQL Service
+  service:
+    name: postgresql@{{pg_version}}-main.service
+    state: reloaded
+  delegate_to: "{{ server_ip }}"
+  when: svc_control.changed

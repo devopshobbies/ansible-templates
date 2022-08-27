@@ -1,0 +1,22 @@
+#Preparing Docker Service
+- name: Set Docker Configuration
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: 0644
+
+- name: Add http proxy to Docker.service
+  lineinfile:
+    path: /lib/systemd/system/docker.service
+    regexp: '^Environment=HTTP_PROXY='
+    insertafter: '^Restart=always'
+    line: Environment="{{ item }}_PROXY={{ http_proxy }}"
+  loop: [HTTP,HTTPS]
+  notify: 
+    - reload systemd daemon
+    - restart Docker
+    - restart kubelet
+  tags: 
+    - service
+
+- meta: flush_handlers
