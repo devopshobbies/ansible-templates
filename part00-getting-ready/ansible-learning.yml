@@ -23,5 +23,5 @@
       authorized_key:
         user: devops
         state: present
-        manage_dir: true
-        key: "{{ lookup( 'file', '/home/devops/.ssh/id_rsa.pub') }}"
+        manage_dir: yes
+        key: "{{ lookup( 'file', '~/.ssh/id_rsa.pub') }}"
