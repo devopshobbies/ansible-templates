@@ -1,0 +1,8 @@
+- name: Add Label General to Node
+  remote_user: rajman
+  become: false
+  register: k8s_cmd_label
+  command: "kubectl label nodes {{ansible_fqdn}} app=general"
+  delegate_to: "{{ item }}"
+  with_items: "{{groups['K8SMaster']}}"
+  when: k8s_cmd_label.rc|d(1)!= 0

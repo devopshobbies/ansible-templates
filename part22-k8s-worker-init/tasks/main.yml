@@ -1,0 +1,10 @@
+---
+- include: time_configuration.yml
+- include: pg_hba_access.yml
+- include: disable_swap.yml
+- include: os_configuration.yml
+- include: package_install.yml
+- include: docker_svc_config.yml
+- include: k8s_node_reset.yml
+- include: k8s_node_join.yml
+- include: k8s_node_label.yml

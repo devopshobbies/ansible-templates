@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Hamid Jahadi
+  description: Setup Zabbix Agent2 AutoRegistration
+  company: Neshan
+
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: "2.1"
+
+  platforms:
+   - name: Ubuntu
+     versions:
+     - bionic
+     - focal
+     - jammy
+
+  galaxy_tags: 
+    - Zabbix
+    - Ubuntu
+
+
+

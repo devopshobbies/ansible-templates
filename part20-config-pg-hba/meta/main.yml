@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Hamid Jahadi
+  description: Configure pg_hba.conf For Access Managment
+  company: Neshan
+
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: "2.1"
+
+  platforms:
+   - name: Ubuntu
+   - name: Debian
+
+  galaxy_tags: 
+    - postgres
+    - pg-hba
+
+allow_duplicates: true
