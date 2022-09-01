@@ -1,0 +1,5 @@
+- name: Set Public Sysctl Configuration 
+  include_role:
+    name: part19-config-sysctl
+  vars:
+    selected_config: 'public' 

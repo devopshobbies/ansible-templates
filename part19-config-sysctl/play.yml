@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: root
+  roles:
+    - role: config-sysctl
+      vars:
+        selected_config: 'kuber'

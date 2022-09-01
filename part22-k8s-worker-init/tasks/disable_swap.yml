@@ -1,7 +1,7 @@
 # Disabling Swap 
 - name: Disable Swap
   mount:
-    name: swap
+    name: none
     fstype: swap
     state: absent
 
