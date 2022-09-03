@@ -1,0 +1,4 @@
+- name: role zabbix-agent2
+  include_role:
+    name: part21-zabbix-agent2-deb
+

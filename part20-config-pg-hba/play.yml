@@ -1,0 +1,25 @@
+- hosts: all
+  become: true
+  vars:
+    pg_db_list:
+      - {server: 172.20.11.130 ,configpath: /etc/postgresql/11/main/pg_hba.conf ,version: 11}
+      - {server: 172.20.11.130 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+      - {server: 172.20.11.131 ,configpath: /etc/postgresql/10/main/pg_hba.conf ,version: 10}
+      - {server: 172.20.11.131 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+      - {server: 172.20.11.137 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+      - {server: 172.20.11.138 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+      - {server: 172.20.11.200 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+      - {server: 172.20.11.210 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+      - {server: 172.20.11.213 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+  tasks:
+    - name: Add DB Access For This Node
+      include_role:
+        name: config-pg-hba
+        apply:
+          throttle: 1
+      vars:
+        server_ip: "{{item.server}}"
+        config_path: "{{item.configpath}}"
+        source_ip: "{{ inventory_hostname }}"
+        pg_version: "{{item.version}}"
+      with_items: "{{ pg_db_list }}"

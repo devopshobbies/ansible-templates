@@ -1,38 +1,52 @@
-Role Name
+Add K8S Worker-Node (Docker - Ubuntu)
 =========
 
-A brief description of the role goes here.
+This role join  new servers to the K8S Cluster With kubeadm.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+You need to have K8S Cluster and create server group of Master-Node in the ansible hosts file.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Some variables used by this role that you can find in defaul folder of the role and change them.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role depend on apt package-manager role for updating the server at first.
+In meta folder you can find role dependency.
+For update & upgrade the  server we used a role with a variable:
+
+- role: package-manager
+  vars:
+    action: 'update'
+
+By 'action' variable tell the package-manager role to do just update the server.
+
+if Reboot required after update you can confirm to reboot the server then continue the tasks.:
+
+" 'hostname' reboot required, please confirm reboot now: (yes or no):"
+
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Usage:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    ansible-playbook play.yml [ --limit server-ip ]
 
 License
 -------
 
-BSD
+GPL-2.0-or-later
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Hamid Jahadi
+
+Email: jahadi.hamid@gmail.com
+github: https://github.com/jahadi-hamid

@@ -1,0 +1,6 @@
+
+- name: role apt update
+  include_role:
+    name: part18-package-manager
+  vars:
+      action: 'update'

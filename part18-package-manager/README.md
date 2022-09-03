@@ -1,38 +1,60 @@
-Role Name
+Apt Package Manager
 =========
 
-A brief description of the role goes here.
+By this role we can install group of apt pkgs on the target servers or update and upgrade the servers.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+We need to send a list of apt package-name to ths role for install them.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+pkgs_list:  'a list of apt package to install should be send to the role'
+action: "install" or "update"
+reboot: "yes" or "no(default)" 'if reboot required after update or installing prompt to confirm for reboot the server'
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+this role used in 2 mode:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+1.apt install:
+
+- hosts: localhost
+  become: true
+  vars:
+    some_pkgs:
+      - kubectl
+      - kubeadm
+      - ...
+  roles:
+    - role: package-manager
+      vars:
+        pkgs_list: "{{ some_pkgs }}"
+        action: 'install'
+
+
+2.apt update
+
+- hosts: localhost
+  become: true
+  roles:
+    - role: package-manager
+      vars:
+        action: 'update'
 
 License
 -------
 
-BSD
+GPL-2.0-or-later
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Hamid Jahadi
+
+Email: jahadi.hamid@gmail.com
+github: https://github.com/jahadi-hamid

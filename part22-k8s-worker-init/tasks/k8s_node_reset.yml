@@ -12,6 +12,8 @@
     - /etc/kubernetes/bootstrap-kubelet.conf
     - /etc/kubernetes/controller-manager.conf
     - /etc/kubernetes/scheduler.conf
+    - /etc/kubernetes/pki/*
+    - /etc/cni/net.d/*
 
 - name: Iptables flush
   iptables:

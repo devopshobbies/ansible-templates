@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+    some_pkgs:
+      -
+  roles:
+    - role: package-manager
+      vars:
+        pkgs_list: "{{ some_pkgs }}"
+        action: 'install'

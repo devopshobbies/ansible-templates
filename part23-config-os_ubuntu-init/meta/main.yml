@@ -1,6 +1,6 @@
 galaxy_info:
   author: Hamid Jahadi
-  description: Setup K8S Worker Nodes
+  description: Init Config Ubuntu OS
   company: Neshan
 
 
@@ -16,11 +16,10 @@ galaxy_info:
      - jammy
 
   galaxy_tags: 
-    - k8s-worker-node
+    - Ubuntu
+    - OS
+
 
 dependencies: 
-    - role: part18-package-manager
-      vars:
-        action: 'update'
 
 
