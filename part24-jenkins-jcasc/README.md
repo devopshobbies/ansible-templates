@@ -1,4 +1,4 @@
-Role Name
+Jenkins-with_plugins_version-install
 =========
 
 Install & Setup Jenkins On Ubuntu Server
@@ -46,7 +46,7 @@ Usage:
 
       ansible-playbook play.yml [ --limit server-ip ]
 
-      
+
 License
 -------
 
