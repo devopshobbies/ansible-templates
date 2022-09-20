@@ -1,0 +1,22 @@
+---
+# defaults file for part24-jenkins-jcasc
+jenkins_user: "admin"
+jenkins_url: "http://localhost:8080"
+jenkins_pkgs:
+  - openjdk-11-jre
+  - jenkins
+jk_plugins:
+  configuration-as-code:
+    enabled: true
+  structs:
+    enabled: True
+  folders:
+    enabled: True
+  script-security:
+    enabled: True
+  branch-api:
+    enabled: True
+  job-dsl:
+    version: 1.79
+    enabled: true
+    pinned: true
