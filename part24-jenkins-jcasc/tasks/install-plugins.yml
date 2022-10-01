@@ -1,0 +1,64 @@
+- name: Install the plugin
+  jenkins_plugin:
+    url_username: "{{ jenkins_user }}"
+    url_password: "{{ jenkins_password }}"
+    url: "{{ jenkins_url }}"
+    name: "{{ item.key }}"
+  register: jenkins_plugin_unversioned
+  when: >
+    'version' not in item.value
+  with_dict: "{{ jk_plugins }}"
+
+- name: Install specific version of the plugin
+  jenkins_plugin:
+    url_username: "{{ jenkins_user }}"
+    url_password: "{{ jenkins_password }}"
+    url: "{{ jenkins_url }}"
+    name: "{{ item.key }}"
+    version: "{{ item.value['version'] }}"
+  register: jenkins_plugin_versioned
+  when: >
+    'version'  in item.value
+  with_dict: "{{ jk_plugins }}"
+
+- name: Initiate the fact
+  set_fact:
+    jenkins_restart_required: false
+
+- name: Check if restart is required by any of the versioned plugins
+  set_fact:
+    jenkins_restart_required: true
+  when: item.changed
+  with_items: "{{ jenkins_plugin_versioned.results }}"
+
+- name: Check if restart is required by any of the unversioned plugins
+  set_fact:
+    jenkins_restart_required: true
+  when: item.changed
+  with_items: "{{ jenkins_plugin_unversioned.results }}"
+
+- name: Restart Jenkins if required
+  service:
+    name: jenkins
+    state: restarted
+  when: jenkins_restart_required
+
+- name: Wait for Jenkins to start up
+  uri:
+    url: "{{ jenkins_url }}/login"
+    status_code: 200
+    timeout: 5
+  register: jenkins_service_status
+  # Keep trying for 5 mins in 5 sec intervals
+  retries: 60
+  delay: 8
+  until: >
+      'status' in jenkins_service_status and
+      jenkins_service_status['status'] == 200
+  when: jenkins_restart_required
+
+- name: Reset the fact
+  set_fact:
+    jenkins_restart_required: false
+  when: jenkins_restart_required
+

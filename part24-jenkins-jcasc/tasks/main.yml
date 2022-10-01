@@ -1,0 +1,5 @@
+---
+# tasks file for part24-jenkins-jcasc
+- import_tasks: add-repository.yml
+- import_tasks: install-pkgs.yml
+- import_tasks: install-plugins.yml
