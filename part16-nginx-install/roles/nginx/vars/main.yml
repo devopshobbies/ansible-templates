@@ -1,0 +1,6 @@
+---
+# vars file for nginl
+#url_path : https://www.free-css.com/assets/files/free-css-templates/download/page261/avalon.zip
+url_path : https://www.free-css.com/assets/files/free-css-templates/download/page283/ninom.zip
+service: nginx
+

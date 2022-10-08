@@ -1,0 +1,13 @@
+---
+- name: Upgrade all packages {{ ansible_distribution }}
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+
+- name: install 
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ packages }}"
+    

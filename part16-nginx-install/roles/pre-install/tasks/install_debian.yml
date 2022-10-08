@@ -1,0 +1,14 @@
+---
+- name: Upgrade all packages {{ ansible_distribution }}
+  ansible.builtin.apt:
+    name: '*'
+    state: latest
+
+- name: install 
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - "{{ packages }}"
+    
+

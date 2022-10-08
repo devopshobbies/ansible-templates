@@ -1,0 +1,30 @@
+---
+# tasks file for nginx
+- name: download page
+  include: download_webpage.yml
+
+- name: unzip
+  include: unzip.yml
+
+- name: install service
+  include: install_service.yml
+
+- name: open website port https
+  firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+  notify:
+    - restart firewall
+
+- name: open website port http
+  firewalld:
+    zone: public
+    service: http
+    permanent: yes
+    state: enabled
+  notify:
+    - restart firewall
+
+- name: webpage
+  include: copy_files.yml

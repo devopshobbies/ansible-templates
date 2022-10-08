@@ -1,0 +1,10 @@
+---
+- name: set shekan
+  ansible.builtin.lineinfile:
+    path: /etc/resolv.conf
+    line: "{{ item }}"
+    create: yes
+    backup: yes
+  with_items:
+    - "{{ shekan_dns }}"
+
