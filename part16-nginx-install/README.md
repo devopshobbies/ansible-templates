@@ -9,5 +9,5 @@ Examples
 
 To run a particular configuration:
 ```
-ansible-playbook nginx-install.yaml 
+ansible-playbook install_nginx.yaml 
 ```
