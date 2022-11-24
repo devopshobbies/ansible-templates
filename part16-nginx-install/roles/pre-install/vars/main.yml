@@ -1,0 +1,13 @@
+---
+# vars file for pre-install
+packages:
+  - epel-release
+  - vim
+  - nano
+  - unzip
+  - tree
+  - wget
+  - curl
+shekan_dns:
+  - nameserver 178.22.122.100
+  - nameserver 185.51.200.2

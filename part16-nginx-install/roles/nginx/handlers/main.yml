@@ -1,0 +1,11 @@
+---
+# handlers file for nginx
+- name: restart nginx
+  service:
+    name: "{{ service }}"
+    state: restarted
+
+- name: restart firewall
+  service:
+    name: firewalld
+    state: restarted
