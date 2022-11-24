@@ -1,0 +1,16 @@
+127.0.0.1       localhost.localdomain   localhost
+
+172.20.20.2   dc1-k8s-cp0          k8s-cp0
+172.20.20.3   dc1-k8s-cp1          k8s-cp1
+172.20.20.4   dc1-k8s-cp2          k8s-cp2
+
+172.20.20.5   dc1-k8s-ha0          k8s-ha0
+172.20.20.6   dc1-k8s-ha1          k8s-ha1
+
+172.20.20.7   nfs1.dc1.k8s
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

@@ -1,0 +1,28 @@
+---
+# defaults file for k8s-worker
+http_proxy: "http://172.20.20.20:3128/"
+pre_pkgs:
+  - apt-transport-https
+  - nfs-common
+kuber_pkgs:
+  - kubeadm=1.20.14-00
+  - kubelet=1.20.14-00
+  - kubectl=1.20.14-00
+  - docker-ce=5:19.03.15*
+  - containerd.io 
+  - docker-ce-cli 
+  - cri-tools
+kuber_reposes_keys:
+  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+  - https://download.docker.com/linux/ubuntu/gpg
+pg_db_list:
+  - {server: 172.20.11.130 ,configpath: /etc/postgresql/11/main/pg_hba.conf ,version: 11}
+  - {server: 172.20.11.130 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+  - {server: 172.20.11.131 ,configpath: /etc/postgresql/10/main/pg_hba.conf ,version: 10}
+  - {server: 172.20.11.131 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+  - {server: 172.20.11.137 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+  - {server: 172.20.11.138 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+  - {server: 172.20.11.200 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+  - {server: 172.20.11.210 ,configpath: /etc/postgresql/12/main/pg_hba.conf ,version: 12}
+  - {server: 172.20.11.213 ,configpath: /etc/postgresql/13/main/pg_hba.conf ,version: 13}
+

@@ -1,0 +1,10 @@
+---
+- name: unarchive zip file
+  ansible.builtin.unarchive:
+    src: /home/ansible/ninom.zip
+    dest: /home/ansible
+    remote_src: yes
+  register: unzip
+
+- debug:
+    var: unzip

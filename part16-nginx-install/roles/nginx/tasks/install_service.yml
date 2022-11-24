@@ -1,0 +1,12 @@
+---
+- name: install {{ service }}
+  register: install
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - "{{ service }}"
+
+- debug:
+   var: install
+

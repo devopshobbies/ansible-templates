@@ -1,0 +1,20 @@
+---
+- name: delete befor context
+  shell: "rm -rf /usr/share/nginx/html/*"
+  register: delete
+
+- debug:
+    var: delete
+
+- name: copy html file on the html main dir
+  register: copy_file
+  copy:
+    src: /home/ansible/ninom-html/
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+    directory_mode: yes
+  notify:
+    - restart nginx
+
+- debug:
+    var: copy_file

@@ -1,0 +1,5 @@
+---
+# defaults file for zabbix-agent2
+zabbix_server_ip: "172.20.20.10"
+zabbix_port: "10050"
+zabbix_timeout: "30"

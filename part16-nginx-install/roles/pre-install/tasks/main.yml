@@ -1,0 +1,14 @@
+---
+# tasks file for pre-install
+- name: install centos packages
+  include: install_centos.yml
+  when: ansible_distribution == "CentOS"
+  ignore_errors: True
+
+- name: install ubuntu packages
+  include: install_debian.yml
+  when: ansible_distribution == "Ubuntu"
+  ignore_errors: True
+
+- name: set shekan
+  include: shekan.yml

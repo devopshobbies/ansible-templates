@@ -1,0 +1,12 @@
+---
+- name: download webpage
+  ansible.builtin.get_url:
+    url: "{{ url_path }}"
+    dest: /home/ansible
+    timeout: 20
+    validate_certs: no
+  register: download
+  ignore_errors: True
+
+- debug:
+    var: download

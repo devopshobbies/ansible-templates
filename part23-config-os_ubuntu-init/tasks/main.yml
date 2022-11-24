@@ -1,0 +1,7 @@
+---
+# tasks file for config_os_init
+- include: apt_update.yml
+- include: auto_completion.yml
+- include: ntp_configuration.yml
+- include: role_sysctl_config.yml
+- include: role_zabbix-agent2-deb.yml

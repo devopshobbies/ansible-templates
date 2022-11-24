@@ -1,0 +1,10 @@
+# Disabling Swap 
+- name: Disable Swap
+  mount:
+    name: none
+    fstype: swap
+    state: absent
+
+- name: Unmount Swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0

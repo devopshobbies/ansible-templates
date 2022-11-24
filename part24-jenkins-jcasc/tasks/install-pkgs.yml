@@ -1,0 +1,25 @@
+- name: Update and Upgrade APT pkgs
+  apt:
+    update_cache: true
+    upgrade: true
+    dpkg_options: 'force-confold,force-confdef'
+    autoremove: true
+
+
+- name: Installing Jenkins pkgs
+  apt:
+    force: yes
+    autoremove: yes
+    pkg: "{{ jenkins_pkgs }}"
+
+- name: Get jenkins admin Password
+  command: "cat  /var/lib/jenkins/secrets/initialAdminPassword"
+  register:  out
+
+- name: Set Password Variable
+  set_fact:
+    jenkins_password: "{{ out.stdout }}"
+
+- name: debug
+  debug:
+    msg: "password: {{jenkins_password}}"

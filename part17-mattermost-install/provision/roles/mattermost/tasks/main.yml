@@ -1,0 +1,116 @@
+- name: Dowmload the MySQL Yum repository
+  get_url:
+    url: http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+    dest: /media
+    mode: '0440'
+  tags: mysql 
+- name: Install the MYSQl Yum repository from the file that we Downloaded
+  yum:
+    name: /media/mysql57-community-release-el7-9.noarch.rpm
+    state: present
+  tags: mysql
+- name:  Import Key
+  rpm_key:
+    state: present
+    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+  tags: mysql
+- name: Install MySQl 
+  yum:
+    name: mysql-community-server
+    state: present
+  tags: mysql
+- name:  Start the MySQl Server
+  service:
+    name: mysqld
+    enabled: yes
+    state: started
+  tags: mysql
+- name: Install Python MYSQl Module
+  yum:
+    name: MySQL-python
+    state: installed
+  tags: mysql
+- name: Obtain the MYSQl root password that was generated when you started MySQL for the first time
+  shell: sudo grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
+  register: mysql_root_first_password
+  tags: mysql
+- name: Change the MYSQl root password
+  command: mysql --user root --password={{ mysql_root_first_password.stdout }} --connect-expired-password --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_root_new_password }}';"
+  tags: mysql
+- name: Create the Mattermost database
+  mysql_db:
+    name: "{{ mysql_mattermost_database }}"
+    login_user: root
+    login_password: "{{  mysql_root_new_password  }}"
+    state: present
+  tags: mysql
+- name: Create the Mattermost database user 
+  mysql_user:
+    name: "{{ mysql_mattermost_user }}"
+    password: "{{ mysql_mattermost_password }}"
+    priv: "{{ mysql_mattermost_database }}.*:ALL,GRANT"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_new_password }}"
+  tags: mysql
+- name: Download the version 6.3.0 of the Mattermost Server tar.gz file 
+  get_url:
+    url: https://releases.mattermost.com/6.3.0/mattermost-6.3.0-linux-amd64.tar.gz
+    dest: /media
+    mode: '0440'
+  tags: matter
+- name: Set up a system user and group called mattermost that will run this service
+  shell: sudo useradd --system --user-group mattermost
+  tags: matter
+- name: Unarchive mattermost files
+  unarchive:
+    src: /media/mattermost-6.3.0-linux-amd64.tar.gz
+    dest: /media
+    owner: mattermost
+    group: mattermost
+    mode: 'g+w'
+    remote_src: yes
+  tags: matter
+- name: Create the Storage Directory for mattermost
+  file:
+    path: /media/mattermost/data
+    state: directory
+    owner: mattermost
+    group: mattermost
+    mode: 'g+w'
+  tags: matter
+- name: Config DriverName and Datasource in config.json which is the main config file of the mattermost
+  template:
+    src: config.json.j2
+    dest: /media/mattermost/config/config.json
+    owner: mattermost
+    group: mattermost
+    mode: '0664'
+  tags: matter
+- name: Create the Mattermost Systemd Configuration file
+  file:
+    path: /etc/systemd/system/mattermost.service
+    state: touch
+  tags: matter
+- name: Config the Mattermost Systemd configuration file
+  template:
+    src: mattermost.service.j2
+    dest: /etc/systemd/system/mattermost.service
+  tags: matter
+- name: daemon-reload
+  systemd:
+    daemon_reload: yes
+- name: Open Port 8065 on FirewallD (Mattermost Port)
+  firewalld:
+    permanent: yes
+    immediate: yes
+    port: 8065/tcp
+    state: enabled
+    zone: public
+  tags: matter
+- name: Start and Enable MatterMost Service
+  service:
+    name: mattermost.service
+    enabled: yes
+    state: started
+  tags: matter

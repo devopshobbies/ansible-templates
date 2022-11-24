@@ -1,0 +1,12 @@
+---
+# tasks file for part19-config-sysctl
+- name: Set sysctl configuration
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_file: /etc/sysctl.d/00-perf-config.conf
+    state: present
+    sysctl_set: yes
+    reload: yes
+    ignoreerrors: yes
+  loop: "{{ lookup('dict', vars[selected_config] ) }}"

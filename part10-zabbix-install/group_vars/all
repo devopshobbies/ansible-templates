@@ -1,0 +1,12 @@
+hostname: zabbix.example.com
+nginx_port: 80
+mysql_zabbix_database: zabbix_db
+mysql_root_password: password
+mysql_zabbix_user: zabbix
+mysql_zabbix_password: password
+
+# important note;
+# The default credentials for the zabbix server console are:
+# username: Admin
+# passwrod: zabbix
+# Caution: make sure you change the password after you log in.

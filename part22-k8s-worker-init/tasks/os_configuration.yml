@@ -1,0 +1,18 @@
+# Set OS Configurations
+- name: Set Hosts
+  copy:
+    src: dc1_hosts
+    dest: /etc/hosts
+    mode: 0644
+
+- name: Enable Require Modules
+  modprobe:
+    state: present
+    name: "{{ item }}"
+  loop: [overlay,br_netfilter]
+
+- name: Set Sysctl Configuration 
+  include_role:
+    name: part19-config-sysctl
+  vars:
+    selected_config: 'kuber' 

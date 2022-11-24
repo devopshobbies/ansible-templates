@@ -1,0 +1,14 @@
+- name: Add Zabbix 6 Repos 
+  apt:
+    deb: "https://repo.zabbix.com/zabbix/6.0/{{ ansible_distribution | lower }}/pool/main/z/zabbix-release/zabbix-release_6.0-3+{{ ansible_distribution | lower }}{{ansible_distribution_version}}_all.deb"
+  when:
+    - ansible_distribution|string == 'Ubuntu'
+    - ansible_distribution_version  in ['18.04','20.04','22.04','9','10','11']        
+
+- name: Install zabbix agent2 v6
+  apt:
+    name: zabbix-agent2
+    update_cache: yes
+  when:
+    - ansible_distribution|string == 'Ubuntu'
+    - ansible_distribution_version  in ['18.04','20.04','22.04','9','10','11'] 

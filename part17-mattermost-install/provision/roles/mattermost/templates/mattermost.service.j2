@@ -1,0 +1,16 @@
+[Unit]
+Description=Mattermost
+After=syslog.target network.target postgresql.service
+
+[Service]
+Type=notify
+WorkingDirectory=/media/mattermost
+User=mattermost
+ExecStart=/media/mattermost/bin/mattermost
+PIDFile=/var/spool/mattermost/pid/master.pid
+TimeoutStartSec=3600
+KillMode=mixed
+LimitNOFILE=49152
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+---
+# handlers file for config_os_init
+- name: start chrony
+  service:
+    name: "chrony.service"
+    state: started
+    enabled: true

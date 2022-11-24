@@ -1,0 +1,22 @@
+# Reset K8S Node For Join
+- name: Reset Node
+  command: kubeadm reset -f
+
+- name: Remove Old K8S Files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/kubernetes/admin.conf
+    - /etc/kubernetes/kubelet.conf
+    - /etc/kubernetes/bootstrap-kubelet.conf
+    - /etc/kubernetes/controller-manager.conf
+    - /etc/kubernetes/scheduler.conf
+    - /etc/kubernetes/pki/*
+    - /etc/cni/net.d/*
+
+- name: Iptables flush
+  iptables:
+    table: "{{ item }}"
+    flush: yes
+  loop: [filter,nat,mangle]

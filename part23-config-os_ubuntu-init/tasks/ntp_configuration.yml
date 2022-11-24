@@ -1,0 +1,11 @@
+- name: Set Timezone To 'Asia/Tehran'
+  timezone:
+    name: Asia/Tehran
+
+- name: Installing Chrony
+  apt:
+    state: latest
+    pkg:
+    - chrony
+  notify: 
+    - start chrony

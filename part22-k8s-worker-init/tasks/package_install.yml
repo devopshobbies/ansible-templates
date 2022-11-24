@@ -1,0 +1,49 @@
+# Installing Packeges
+- name: Installing Prerequest pkgs
+  include_role:
+    name: part18-package-manager
+  vars:
+    pkgs_list: "{{ pre_pkgs }}"
+    action: 'install'
+
+- name: Get Apt-Key Docker & Kubernetes
+  environment: 
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items: "{{ kuber_reposes_keys }}"
+  tags: 
+    - apt-repo
+
+- name: Add Kubernetes repository
+  apt_repository:
+    repo: "deb  https://apt.kubernetes.io/ kubernetes-xenial main"
+    state: present
+    filename: kubernetes
+  tags: 
+    - apt-repo
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu "{{ ansible_distribution_release }}" stable
+    state: present
+    filename: Docker
+  tags: 
+    - apt-repo
+
+- name: Installing k8s pkgs
+  include_role:
+    name: part18-package-manager
+  vars:
+    pkgs_list: "{{ kuber_pkgs }}"
+    action: 'install'
+
+- name: Hold packages
+  dpkg_selections:
+    name: "{{ item.split('=')[0] }}"
+    selection: hold
+  with_items: "{{ kuber_pkgs }}"
+  tags: 
+    - apt-hold

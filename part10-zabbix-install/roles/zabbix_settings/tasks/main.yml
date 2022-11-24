@@ -1,0 +1,8 @@
+  - name: remove previous zabbix config
+    file:
+      path: /etc/nginx/conf.d/zabbix.conf
+      state: absent
+
+  - name: restore zabbix config
+    template: src=zabbix_server.conf dest=/etc/zabbix/zabbix_server.conf
+    notify: restart_zabbix_services

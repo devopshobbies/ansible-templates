@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Hamid Jahadi
+  description: Config Sysctl 
+  company: Neshan
+
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: "2.1"
+
+  platforms:
+   - name: Ubuntu
+   - name: Debian
+   - name: Fedora
+   - name: GenericLinux
+
+  galaxy_tags: 
+    - sysctl_config
+
+
+
+
+
