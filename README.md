@@ -42,7 +42,21 @@
 
  - [Ansible Tutorial - Part 16 - Install Nginx](./part16-nginx-install) 
 
- - [Ansible Tutorial - Part 17 - Install Mattermost](./part17-mattermost-install)  
+ - [Ansible Tutorial - Part 17 - Install Mattermost](./part17-mattermost-install)
+
+ - [Ansible Tutorial - Part 18 - Install & Update Packages (APT)](./part18-package-manager/)
+
+ - [Ansible Tutorial - Part 19 - Config Sysctl](./part19-config-sysctl/)
+
+ - [Ansible Tutorial - Part 20 - Configure PostgreSQL HBA](./part20-config-pg-hba/)
+
+ - [Ansible Tutorial - Part 21 - Install zabbix-agent2](./part21-zabbix-agent2-deb/)
+
+ - [Ansible Tutorial - Part 22 - Setup K8S Worker Nodes](./part22-k8s-worker-init/)
+
+ - [Ansible Tutorial - Part 23 - Initial Ubuntu Configuration](./part23-config-os_ubuntu-init/) 
+
+ - [Ansible Tutorial - Part 24 - Install Jenkins](./part24-jenkins-jcasc/)
 
 ## Contributions:
 
