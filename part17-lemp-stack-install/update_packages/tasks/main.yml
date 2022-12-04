@@ -1,0 +1,2 @@
+- include: apt_update.yml
+- include: packages_install.yml 
