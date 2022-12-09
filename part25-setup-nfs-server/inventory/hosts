@@ -1,0 +1,11 @@
+[nfs_server]
+NFS_SERVER-IP  server_role=nfsserver
+
+
+[nfs_client]
+NFS_CLIENT-IP  server_role=nfsclient
+
+
+[nfsnodes:children]
+nfs_server
+nfs_client  

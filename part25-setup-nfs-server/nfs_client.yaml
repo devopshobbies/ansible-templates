@@ -1,0 +1,4 @@
+---
+- hosts: nfs_client
+  roles:            
+        - nfs_client      
