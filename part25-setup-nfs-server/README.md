@@ -10,5 +10,5 @@ Examples
 
 To run a particular configuration:
 ```
-ansible-playbook -i inventories/hosts nfs.yaml
+ansible-playbook -i inventory/hosts nfs.yaml
 ```
