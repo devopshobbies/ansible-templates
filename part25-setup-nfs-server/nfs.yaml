@@ -1,0 +1,3 @@
+---
+- import_playbook: nfs_client.yaml
+- import_playbook: nfs_server.yaml

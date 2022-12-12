@@ -1,0 +1,63 @@
+---
+- name: Installation for server
+  apt:
+        name: "{{ item }}"
+        state: present
+  loop:
+        - firewalld
+        - nfs-kernel-server
+  when: server_role == 'nfsserver'
+
+
+- name: Enable and Start Services
+  service:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+  loop:
+        - firewalld
+        - nfs-kernel-server
+
+
+- name: Allow ssh and nfs service over firewall
+  firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        zone: public
+        state: enabled
+        immediate: true
+  loop:
+        - ssh
+        - nfs
+
+
+- name: Create the shared directory
+  file:
+        path: /home/data1
+        state: directory
+        owner: nobody
+        group: nogroup
+        mode: 0755
+
+
+- name: Create exports (Config File)
+  file:
+        path: /etc/exports
+        state: touch
+
+
+- name: Config exports
+  ansible.builtin.lineinfile:
+        line: "/home/data1 {{ item }}(rw,sync,no_root_squash,no_subtree_check)"
+        path: /etc/exports
+  with_items:
+        - "{{ groups.nfs_client }}"
+
+
+- name: exportfs command
+  shell: "exportfs -arv"
+
+
+
+
+

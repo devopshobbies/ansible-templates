@@ -57,6 +57,8 @@
  - [Ansible Tutorial - Part 23 - Initial Ubuntu Configuration](./part23-config-os_ubuntu-init/) 
 
  - [Ansible Tutorial - Part 24 - Install Jenkins](./part24-jenkins-jcasc/)
+ 
+ - [Ansible Tutorial - Part 25 - setup nfs server](./part25-setup-nfs-server/)
 
 ## Contributions:
 
