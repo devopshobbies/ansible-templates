@@ -2,14 +2,13 @@
 - hosts: all
   become: true
   vars:
-    the_user: "devops"
+    the_user: "devopstwo"
 
   tasks:
     - name: create-user
       user:
         name: "{{ the_user }}"
-        comment: create a user
-        groups: root,wheel
+        groups: root,sudo
         shell: /bin/bash
         state: present
         create_home: yes
