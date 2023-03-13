@@ -1,26 +1,28 @@
 ---
 - hosts: all
-  become: yes
+  become: true
+  vars:
+    the_user: "devops"
+
   tasks:
     - name: create-user
       user:
-        name: user
-        comment: create a user
-        group: root,wheel
+        name: "{{ the_user }}"
+        groups: root,wheel
         shell: /bin/bash
         state: present
         create_home: yes
 
     - name: Create a SSH key
       user:
-        name: user
+        name: "{{ the_user }}"
         generate_ssh_key: yes
         ssh_key_bits: 2048
         ssh_key_file: .ssh/id_rsa
 
     - name: set password
       user:
-        name: user
-        password: password
+        name: "{{ the_user }}"
+        password: "password"
         password_expire_min: 14
         password_expire_max: 60

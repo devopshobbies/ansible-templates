@@ -10,7 +10,7 @@ Examples
 
 To run a particular configuration:
 ```
-ansible-playbook create-user.yml
+ansible-playbook -K create-user.yml
 ```
 
 Build inventory
