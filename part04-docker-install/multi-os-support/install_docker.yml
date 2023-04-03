@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  become: true
+  vars:
+    docker_os: "{{ 'centos' if ansible_distribution == 'RedHat' else (ansible_distribution | lower) }}"
+
+  tasks:
+    - include_tasks: 'tasks/{{ ansible_os_family }}-based.yml'

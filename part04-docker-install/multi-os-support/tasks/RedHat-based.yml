@@ -1,0 +1,37 @@
+- name: Redhat-Based | Add signing key
+  ansible.builtin.rpm_key:
+    key: "https://download.docker.com/linux/{{ docker_os }}/gpg"
+    state: present
+
+- name: Redhat-Based | Add Docker CE repository
+  get_url:
+    url: "https://download.docker.com/linux/{{ docker_os }}/docker-ce.repo"
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+
+- name: Redhat-Based | Install Docker CE packages
+  dnf:
+    name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
+    state: present
+    update_cache: yes
+    # allowerasing: true
+    nobest: true
+
+- name: Redhat-Based | Start docker service
+  service:
+    name: docker
+    state: started
+
+- name: Redhat-Based | Verify Docker Installation
+  command: docker run hello-world
+  register: result
+  ignore_errors: true
+
+- name: Redhat-Based | Docker Installation Status
+  debug:
+    var: result.stdout_lines
