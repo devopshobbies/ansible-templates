@@ -1,0 +1,12 @@
+---
+
+- name: delete old files
+  ansible.builtin.shell:
+    rm -rf /var/www/html/*
+
+- name: copy file to web server
+  ansible.builtin.copy:
+    src: ../files/var/www/html/
+    dest: /var/www/html/
+    directory_mode: true
+    mode: 0644
