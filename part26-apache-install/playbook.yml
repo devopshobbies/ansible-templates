@@ -1,8 +1,8 @@
 ---
 
-- name: install apache
-  hosts: servers
+- hosts: servers
   become: yes
+  
   roles:
     - apache
     - firewall
