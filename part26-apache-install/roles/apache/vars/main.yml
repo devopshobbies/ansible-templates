@@ -1,0 +1,4 @@
+---
+
+web_service_deb: apache2
+web_service_rh: httpd
