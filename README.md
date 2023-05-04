@@ -59,7 +59,7 @@
  - [Ansible Tutorial - Part 24 - Install Jenkins](./part24-jenkins-jcasc/)
  
  - [Ansible Tutorial - Part 25 - setup nfs server](./part25-setup-nfs-server/)
- - [Ansible Tutorial - Part 25 - Install apache](./part26-apache-install/)
+ - [Ansible Tutorial - Part 26 - Install apache](./part26-apache-install/)
 
 ## Contributions:
 
