@@ -1,0 +1,14 @@
+---
+
+- name: updates (redhat based distro)
+  ansible.builtin.dnf:
+    update_cache: true
+    autoremove: true
+  when: ansible_distribution in ["Centos", "Rocky"]
+
+- name: updates and upgrade (debian based distro)
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    update_cache: true
+    autoremove: true
+  when: ansible_distribution in ["Debian", "Ubuntu"]
