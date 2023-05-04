@@ -5,7 +5,6 @@
     /sbin/iptables -t filter -I INPUT -p tcp --dport 443 -j ACCEPT
     /sbin/iptables -t filter -I INPUT -p tcp --dport 80 -j ACCEPT
     /sbin/iptables-save > /etc/sysconfig/iptables
-    systemctl restart iptables.service
   when: ansible_distribution in ["Centos", "Rocky"]
   
 - name: open 80 and 443 port (debian based distro)
@@ -13,5 +12,8 @@
     /sbin/iptables -t filter -I INPUT -p tcp --dport 443 -j ACCEPT
     /sbin/iptables -t filter -I INPUT -p tcp --dport 80 -j ACCEPT
     /sbin/iptables-save > /etc/iptables/rules.v4
-    systemctl restart iptables.service
   when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- name: run handlers
+  ansible.builtin.include_tasks:
+    ../handlers/main.yml
