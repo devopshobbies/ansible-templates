@@ -1,0 +1,13 @@
+---
+
+- name: install apache (redhat based distro)
+  ansible.builtin.dnf:
+    name: "{{ service_rh }}"
+    state: latest
+  when: ansible_distribution in ["Centos", "Rocky"]
+
+- name: install apache (debian based distro)
+  ansible.builtin.apt:
+    name: "{{ service_deb }}"
+    state: latest
+  when: ansible_distribution in ["Debian", "Ubuntu"]

@@ -1,0 +1,7 @@
+---
+
+- name: restart iptables
+  ansible.builtin.service:
+    name: "{{firewall}}"
+    enabled: yes
+    state: restarted

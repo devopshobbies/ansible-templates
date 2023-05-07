@@ -1,0 +1,8 @@
+---
+
+- hosts: servers
+  become: yes
+  
+  roles:
+    - apache
+    - firewall

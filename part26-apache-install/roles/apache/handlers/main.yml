@@ -1,0 +1,16 @@
+---
+
+- name: restart or reload apache (redhat based distro)
+  ansible.builtin.service:
+    name: "{{service_rh}}"
+    enabled: yes
+    state: restarted
+  when: ansible_distribution in ["Centos", "Rocky"]
+ 
+
+- name: restart or reload apache (debian based distro)
+  ansible.builtin.service:
+    name: "{{service_deb}}"
+    enabled: yes
+    state: restarted
+  when: ansible_distribution in ["Debian", "Ubuntu"]

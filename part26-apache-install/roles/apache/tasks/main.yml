@@ -1,0 +1,10 @@
+---
+
+- ansible.builtin.include_tasks:
+    preinstall.yml
+- ansible.builtin.include_tasks:
+    install_apache.yml
+- ansible.builtin.include_tasks:
+    upload_file.yml
+- ansible.builtin.include_tasks:
+    ../handlers/main.yml
