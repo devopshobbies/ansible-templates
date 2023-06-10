@@ -7,21 +7,21 @@
     - name: Create account
       user:
         name: devops
+        # set bash as default shell for user.
+        shell: /bin/bash
 
     - name: sudo access
       copy:
         dest: /etc/sudoers.d/devops
+        # Granting sudo to created passwordless user 
+        # visudo 
         content: 'devops ALL=(ALL) NOPASSWD: ALL'
         validate: /usr/sbin/visudo -cf %s
-
-    - name: set up bash as default shell for user.
-      user:
-        name: devops
-        shell: /bin/bash
 
     - name: ssh key
       authorized_key:
         user: devops
         state: present
         manage_dir: yes
-        key: "{{ lookup( 'file', '~/.ssh/id_rsa.pub') }}"
+        # Adding ssh_key of a user whi is running playbook.
+        key: "{{ lookup( 'file', lookup( 'env', 'HOME' ) + '/.ssh/id_rsa.pub') }}"
