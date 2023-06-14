@@ -4,11 +4,9 @@
  <img alt="Ansible Logo" src="image/banner.png">
 </p>
 
-**This Repo contains many sample **codes with **explanations** (Linux Configuration Management) to help you find your need of ansible very easily and in a structured manner.
+**This Repo contains many sample** codes with **explanations** (Linux Configuration Management) to help you find your need ansible very easily and in a structured manner.
 
 ## Published templates:
-
-## Published articles:
 
 | Icon   | Article                                                       | Link                                                                      |
 | ------ | ------------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -42,6 +40,11 @@
 
 ## Contributions:
 
-All contributions are welcomed. Help me to enrich this repository.
+We are more than welcome with any kind of contribution. Noticed there are too many ways to contribute to open-source projects. You can use the following guide:
 
-If you find any **bugs** in the examples, please file an issue.
+- Check the code and find problems then report.
+- If you think you can improve any template, do not hesitate and create a fork and add your changes then create a pull request.
+- There are some items tagged with in progress status. You can help to complete them.
+- If you think there's a place for another template you can add it.
+
+Thank you for reading. Have a good day.
