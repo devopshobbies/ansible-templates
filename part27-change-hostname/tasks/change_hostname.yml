@@ -1,0 +1,5 @@
+- name: Change hostname for every host based on  "hostname" variable in host_vars/ directory
+  become: true
+  hostname:
+    name: "{{ hostname }}"
+  notify: reboot

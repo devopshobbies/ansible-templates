@@ -1,0 +1,3 @@
+---
+- include: change_hostname.yml
+- include: update_hosts_file

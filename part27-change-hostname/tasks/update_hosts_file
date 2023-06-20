@@ -1,0 +1,21 @@
+- name: Generate temporary hosts file
+  template:
+    src: templates/hosts.j2
+    dest: /tmp/hosts
+
+- name: Read /etc/hosts content
+  command: cat /etc/hosts
+  register: existing_hosts_content
+  changed_when: false
+
+- name: Iterate through /tmp/hosts file
+  command: cat /tmp/hosts
+  register: tmp_hosts_content
+  changed_when: false
+
+- name: Append missing lines to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item }}"
+  loop: "{{ tmp_hosts_content.stdout_lines }}"
+  when: item is not search(existing_hosts_content.stdout_lines | join('  '))
