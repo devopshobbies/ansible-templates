@@ -1,6 +1,0 @@
----
-- name: Install HAProxy
-  hosts: haproxy
-  become: true
-  roles:
-    - haproxy
