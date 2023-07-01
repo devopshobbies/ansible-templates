@@ -15,12 +15,3 @@
   apt:
     name: haproxy=2.8.\*
     state: present
-
-- name: Update system
-  apt:
-    name: '*'
-    state: latest
-    update_cache: yes
-    cache_valid_time: 3600
-
-
