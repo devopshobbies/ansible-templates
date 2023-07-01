@@ -1,6 +1,6 @@
 ---
-- name: reboot
+- name: restart systemd-hostnamed
   become: true
-  reboot:
-    post_reboot_delay: 15 # Seconds to wait after the reboot command was successful before attempting to validate the system rebooted successfully.
-    reboot_timeout: 600 # Maximum seconds to wait for machine to reboot and respond to a test command.
+  service:
+    name: systemd-hostnamed
+    state: restarted
