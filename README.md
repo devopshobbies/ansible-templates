@@ -37,6 +37,8 @@
 | 🚦     | Ansible Tutorial - Part 24 - Install Jenkins                  | [Part 24 - Install Jenkins](./part24-jenkins-jcasc/)                      |
 | 📂     | Ansible Tutorial - Part 25 - Setup NFS Server                 | [Part 25 - Setup NFS Server](./part25-setup-nfs-server/)                  |
 | 🏢     | Ansible Tutorial - Part 26 - Install Apache                   | [Part 26 - Install Apache](./part26-apache-install/)                      |
+| 💻     | Ansible Tutorial - Part 27 - Change Hostname                  | [Part 27 - Change Hostname](./part27-change-hostname/)                    |
+| 🚀     | Ansible Tutorial - Part 28 - Install HAProxy                  | [Part 26 - Install HAProxy](./part26-haproxy-install/)                    |
 
 ## Contributions:
 
