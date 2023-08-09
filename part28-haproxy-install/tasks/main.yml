@@ -1,0 +1,18 @@
+---
+# Only one of these should Be executed based on your OS family
+- include_tasks: haproxy_ubuntu.yml
+# - include_tasks: haproxy_redhat.yml
+
+- name: Strat and enable HAProxy
+  service:
+    name: haproxy
+    state: started
+    enabled: yes
+
+- name: Copy HAProxy configuration in place.
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0644
+    validate: haproxy -f %s -c -q
+  notify: restart haproxy

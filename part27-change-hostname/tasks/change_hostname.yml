@@ -2,4 +2,4 @@
   become: true
   hostname:
     name: "{{ hostname }}"
-  notify: reboot
+  notify: restart systemd-hostnamed

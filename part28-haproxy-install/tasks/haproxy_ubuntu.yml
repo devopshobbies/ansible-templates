@@ -1,0 +1,17 @@
+---
+- name: Install prerequisites
+  apt:
+    name: software-properties-common
+    state: present
+    install_recommends: no
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Add HAProxy repository
+  apt_repository:
+    repo: "ppa:vbernat/haproxy-2.8"
+
+- name: Install HAProxy package
+  apt:
+    name: haproxy=2.8.\*
+    state: present
