@@ -1,0 +1,80 @@
+---
+# Ubuntu Servers
+- name: Add Zabbix 6.4 Repos for Ubuntu
+  apt:
+    deb: https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu{{ ansible_distribution_version }}_all.deb
+  when:
+    - ansible_distribution|string == 'Ubuntu'
+    - ansible_distribution_major_version  in ['18','20','22']
+
+- name: Install zabbix agent2 v6 on Ubuntu
+  apt:
+    name: zabbix-agent2
+    update_cache: yes
+  when:
+    - ansible_distribution|string == 'Ubuntu'
+    - ansible_distribution_major_version  in ['18','20','22']
+
+# Debian Servers
+- name: Add Zabbix 6.4 Repos for Debian
+  apt:
+    deb: https://repo.zabbix.com/zabbix/6.4/debian/pool/main/z/zabbix-release/zabbix-release_6.4-1+debian{{ ansible_distribution_major_version }}_all.deb
+  when:
+    - ansible_distribution|string == 'Debian'
+    - ansible_distribution_major_version  in ['9','10','11','12']
+
+- name: Install zabbix agent2 v6 on Debian
+  apt:
+    name: zabbix-agent2
+    update_cache: yes
+  when:
+    - ansible_distribution|string == 'Debian'
+    - ansible_distribution_major_version  in ['9','10','11','12']
+
+# RHEL 8 Servers
+- name: Install zabbix v6.4 Repository on RedHat family - OS version 8
+  dnf:
+    name: https://repo.zabbix.com/zabbix/6.4/rhel/8/x86_64/zabbix-release-6.4-1.el8.noarch.rpm
+    state: present
+    validate_certs: false
+    disable_gpg_check: true
+  when:
+    - ansible_pkg_mgr == 'dnf'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version == '8'
+
+- name: Install Zabbix agent2 on RedHat family - OS version 8
+  dnf:
+    name:
+      - zabbix-agent2
+      - zabbix-agent2-plugin-*
+    state: present  
+    update_cache: yes
+  when:
+    - ansible_pkg_mgr == 'dnf'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version == '8'
+
+# RHEL 6 and 7 Servers
+- name: Install zabbix v6.4 Repository on RedHat family - OS versions 6 and 7
+  yum:
+    name: https://repo.zabbix.com/zabbix/6.4/rhel/{{ ansible_distribution_major_version }}/x86_64/zabbix-release-6.4-1.el{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
+    validate_certs: false
+    disable_gpg_check: true
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version in ['6','7']
+
+- name: Install Zabbix agent2 on RedHat family - OS versions 6 and 7
+  yum:
+    name:
+      - zabbix-agent2
+      - zabbix-agent2-plugin-*
+    state: present
+    update_cache: yes
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version in ['6','7']

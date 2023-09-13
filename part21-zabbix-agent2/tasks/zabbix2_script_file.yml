@@ -1,0 +1,25 @@
+- name: Create Directory scripts
+  file:
+    path: /etc/zabbix/scripts
+    state: directory
+  when:
+    - ( ansible_os_family == 'Debian' and ansible_distribution_major_version  in ['9','10','11','12','18','20','22']) or
+      (ansible_os_family == 'RedHat' and ansible_distribution_major_version  in ['6','7','8'])
+
+- name: Copy Zabbix Discovery Script
+  copy:
+    src: discovery.sh
+    dest: /etc/zabbix/scripts/discovery.sh
+    mode: 0755
+  when:
+    - ( ansible_os_family == 'Debian' and ansible_distribution_major_version  in ['9','10','11','12','18','20','22']) or
+      (ansible_os_family == 'RedHat' and ansible_distribution_major_version  in ['6','7','8'])
+
+- name: Copy Apt Monitoring Config
+  copy:
+    src: apt.conf
+    dest: /etc/zabbix/zabbix_agent2.d/apt.conf
+    mode: 0644
+  when:
+    - ansible_os_family == 'Debian'
+    - ansible_distribution_major_version  in ['9','10','11','12','18','20','22']

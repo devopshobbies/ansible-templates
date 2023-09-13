@@ -31,14 +31,14 @@
 | 📦     | Ansible Tutorial - Part 18 - Install & Update Packages (APT)  | [Part 18 - Install & Update Packages (APT)](./part18-package-manager/)    |
 | ⚙️     | Ansible Tutorial - Part 19 - Config Sysctl                    | [Part 19 - Config Sysctl](./part19-config-sysctl/)                        |
 | 🐘     | Ansible Tutorial - Part 20 - Configure PostgreSQL HBA         | [Part 20 - Configure PostgreSQL HBA](./part20-config-pg-hba/)             |
-| 📈     | Ansible Tutorial - Part 21 - Install zabbix-agent2            | [Part 21 - Install zabbix-agent2](./part21-zabbix-agent2-deb/)            |
+| 📈     | Ansible Tutorial - Part 21 - Install zabbix-agent2            | [Part 21 - Install zabbix-agent2](./part21-zabbix-agent2/)            |
 | 💻     | Ansible Tutorial - Part 22 - Setup K8S Worker Nodes           | [Part 22 - Setup K8S Worker Nodes](./part22-k8s-worker-init/)             |
 | 🔧     | Ansible Tutorial - Part 23 - Initial Ubuntu Configuration     | [Part 23 - Initial Ubuntu Configuration](./part23-config-os_ubuntu-init/) |
 | 🚦     | Ansible Tutorial - Part 24 - Install Jenkins                  | [Part 24 - Install Jenkins](./part24-jenkins-jcasc/)                      |
 | 📂     | Ansible Tutorial - Part 25 - Setup NFS Server                 | [Part 25 - Setup NFS Server](./part25-setup-nfs-server/)                  |
 | 🏢     | Ansible Tutorial - Part 26 - Install Apache                   | [Part 26 - Install Apache](./part26-apache-install/)                      |
 | 💻     | Ansible Tutorial - Part 27 - Change Hostname                  | [Part 27 - Change Hostname](./part27-change-hostname/)                    |
-| 🚀     | Ansible Tutorial - Part 28 - Install HAProxy                  | [Part 26 - Install HAProxy](./part26-haproxy-install/)                    |
+| 🚀     | Ansible Tutorial - Part 28 - Install HAProxy                  | [Part 28 - Install HAProxy](./part28-haproxy-install/)                    |
 
 ## Contributions:
 
