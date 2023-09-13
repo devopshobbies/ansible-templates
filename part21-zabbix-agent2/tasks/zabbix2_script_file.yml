@@ -14,3 +14,5 @@
     src: apt.conf
     dest: /etc/zabbix/zabbix_agent2.d/apt.conf
     mode: 0644
+  When:
+    - ansible_os_family == 'Debian'
