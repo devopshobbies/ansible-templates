@@ -46,10 +46,10 @@
     name:
       - zabbix-agent2
       - zabbix-agent2-plugin-*
-    when:
-      - ansible_pkg_mgr == 'dnf'
-      - ansible_os_family == 'RedHat'
-      - ansible_distribution_major_version == '8'
+  when:
+    - ansible_pkg_mgr == 'dnf'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version == '8'
 
 # RHEL 7 Servers
 - name: Install zabbix v6.4 Repository on RedHat family - OS versions 6 and 7
@@ -66,7 +66,7 @@
     name:
       - zabbix-agent2
       - zabbix-agent2-plugin-*
-    when:
-      - ansible_pkg_mgr == 'yum'
-      - ansible_os_family == 'RedHat'
-      - ansible_distribution_major_version in ['6','7']
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version in ['6','7']
