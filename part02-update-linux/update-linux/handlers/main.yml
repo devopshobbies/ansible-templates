@@ -1,5 +1,8 @@
-- name: Reboot
+---
+# handlers file for update-linux
+- name: reboot_machine
   reboot:
     connect_timeout: '{{ reboot_connect_timeout }}'
     post_reboot_delay: '{{ reboot_post_reboot_delay }}'
     reboot_timeout: '{{ reboot_timeout }}'
+

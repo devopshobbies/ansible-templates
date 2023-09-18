@@ -1,4 +1,0 @@
-- name: Upgrade Redhat family.
-  yum:
-    name: '*'
-    state: latest
