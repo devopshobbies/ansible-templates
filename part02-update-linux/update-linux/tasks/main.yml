@@ -1,0 +1,35 @@
+- name: Update all packages to their latest version on RedHat Family - yum package manager
+  yum:
+    name: "*"
+    update_only: true
+    update_cache: true
+    state: latest
+  notify:
+    - reboot_machine
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_pkg_mgr == 'yum'
+
+- name: Update all packages to their latest version on RedHat Family - dnf package manager
+  dnf:
+    name: "*"
+    update_only: true
+    update_cache: true
+    state: latest
+  notify:
+    - reboot_machine
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_pkg_mgr == 'dnf'
+
+- name: Update all packages to their latest version on Debian Family
+  apt:
+    name: "*"
+    state: latest
+    force_apt_get: true
+    update_cache: true
+    cache_valid_time: 3600
+  notify:
+    - reboot_machine
+  when:
+    - ansible_os_family == 'Debian'

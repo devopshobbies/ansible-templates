@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Masoud Maghsoudi
+  description: Update Linux machine
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Redhat Family
+    - name: Debian Family
+
+  galaxy_tags:
+    - linux
+    - apt
+    - apt-get
+    - dnf
+    - yum
+
+dependencies:
+  - apt
+  - apt-get
+  - dnf
+  - yum
