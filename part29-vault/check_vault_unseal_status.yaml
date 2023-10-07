@@ -1,11 +1,18 @@
 - name: Check Vault Seal Status
   hosts: localhost
   gather_facts: no
+  
+  vars_prompt:
+
+    - name: DOMAIN
+      prompt: what is the domain of the vault?
+      default: vault.devopshobbies.com
+      private: false
 
   tasks:
     - name: Get Vault Seal Status
       uri:
-        url: "https://{{DOMAIN}}/v1/sys/seal-status"
+        url: "https://{{ DOMAIN }}/v1/sys/seal-status"
         method: GET
         return_content: yes
       register: seal_status
