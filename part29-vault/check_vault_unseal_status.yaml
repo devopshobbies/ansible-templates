@@ -1,0 +1,36 @@
+- name: Check Vault Seal Status
+  hosts: localhost
+  gather_facts: no
+  
+  vars_prompt:
+
+    - name: DOMAIN
+      prompt: what is the domain of the vault?
+      default: vault.devopshobbies.com
+      private: false
+
+  tasks:
+    - name: Get Vault Seal Status
+      uri:
+        url: "https://{{ DOMAIN }}/v1/sys/seal-status"
+        method: GET
+        return_content: yes
+      register: seal_status
+
+    - name: Extract Seal Status
+      set_fact:
+        is_sealed: "{{ seal_status.json.sealed }}"
+
+    - name: Continue Pipeline 
+      debug:
+        msg:  "Vault Status ==> seal"
+      when: is_sealed == true
+
+    - name: Stop Pipeline
+      command: WRONG COMMAND
+      when: is_sealed == true
+
+    - name: Continue Pipeline 
+      debug:
+        msg: "Vault Status ==> Unseal"
+      when: is_sealed == false
