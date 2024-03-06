@@ -1,6 +1,8 @@
-  - name: add php-fpm repo (debian)
-    shell: echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
-  
+ - name: Add php repository
+   apt_repository:
+    repo: "ppa:ondrej/php"
+    state: present
+    
   - name: update the repos again
     apt:
       update_cache: yes
