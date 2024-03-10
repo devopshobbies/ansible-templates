@@ -1,0 +1,115 @@
+
+- name: Create a letsencrypt directory if it does not exist
+  ansible.builtin.file:
+    path: "{{item}}"
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  loop:
+    - /var/www/html
+    - "{{letsencrypt_dir}}"
+    - "{{letsencrypt_dir}}/account"
+    - "{{letsencrypt_dir}}/certs"
+    - "{{letsencrypt_dir}}/csrs"
+    - "{{letsencrypt_dir}}/keys"
+    - /var/www/html/.well-known/acme-challenge
+
+- name: Set default ACME method
+  ansible.builtin.set_fact:
+    acme_method: "http-01"
+  when: acme_method is not defined
+
+- name: Generate private key for ACME account
+  community.crypto.openssl_privatekey:
+    path: "{{letsencrypt_account_key}}"
+
+- name: Generate let's encrypt private key with the default values
+  community.crypto.openssl_privatekey:
+    path: "{{letsencrypt_keys_dir}}/{{ acme_domain}}.key"
+
+- name: Generate certificate signing request (CSR)
+  community.crypto.openssl_csr:
+    path: "{{letsencrypt_csrs_dir}}/{{ acme_domain }}.csr"
+    privatekey_path: "{{letsencrypt_keys_dir}}/{{ acme_domain }}.key"
+    common_name: "{{acme_domain}}"
+
+- name: Register ACME Account without external binding
+  community.crypto.acme_account:
+    account_key_src: "{{letsencrypt_account_key}}"
+    acme_directory: "{{ acme_directory }}"
+    acme_version: "{{ acme_version }}"
+    state: present
+    terms_agreed: true
+    contact:
+      - "mailto:{{ acme_account_email }}"
+  register: acme_account
+
+- name: Check if previous certificate exists
+  ansible.builtin.stat:
+    path: "{{letsencrypt_certs_dir}}/{{ acme_domain }}.crt"
+  register: prev_cert
+
+- name: Revoke previous certificate
+  community.crypto.acme_certificate_revoke:
+    account_key_src: "{{letsencrypt_account_key}}"
+    certificate: "{{letsencrypt_certs_dir}}/{{ acme_domain }}.crt"
+    acme_directory: "{{ acme_directory }}"
+    acme_version: "{{ acme_version }}"
+  when: prev_cert.stat.exists and acme_revoke
+
+- name: Create a challenge
+  community.crypto.acme_certificate:
+    account_key_src: "{{letsencrypt_account_key}}"
+    account_email: "{{ acme_account_email }}"
+    src: "{{letsencrypt_csrs_dir}}/{{ acme_domain }}.csr"
+    cert: "{{letsencrypt_certs_dir}}/{{ acme_domain}}.pem"
+    acme_directory: "{{ acme_directory }}"
+    acme_version: "{{ acme_version }}"
+    terms_agreed: true
+    force: true
+    modify_account: false
+    challenge: "{{ acme_method }}"
+  register: acme_challenge
+
+- name: Show challenge
+  ansible.builtin.debug: var=acme_challenge
+
+- name: Copy http-01 challenge data
+  ansible.builtin.copy:
+    dest: "{{ project_path }}/{{ item.value['http-01']['resource'] }}"
+    content: "{{ item.value['http-01']['resource_value'] }}"
+  with_dict:
+    - "{{ acme_challenge['challenge_data'] }}"
+  when: acme_method == 'http-01'
+
+- name: Let the challenge(s) be validated and retrieve the cert and intermediate certificate
+  community.crypto.acme_certificate:
+    account_key_src: "{{letsencrypt_account_key}}"
+    csr: "{{letsencrypt_csrs_dir}}/{{ acme_domain }}.csr"
+    dest: "{{letsencrypt_certs_dir}}/{{ acme_domain }}.pem"
+    fullchain_dest: "{{letsencrypt_certs_dir}}/{{ acme_domain }}-fullchain.pem"
+    chain_dest: "{{letsencrypt_certs_dir}}/{{ acme_domain }}-intermediate.pem"
+    data: "{{ acme_challenge }}"
+    acme_directory: "{{ acme_directory }}"
+    acme_version: "{{ acme_version }}"
+    terms_agreed: true
+    modify_account: false
+    challenge: "{{ acme_method }}"
+    retrieve_all_alternates: true
+
+- name: Show challenge
+  ansible.builtin.debug: var=acme_challenge
+
+- name: Clean http-01 challenge data from drive
+  ansible.builtin.file:
+    path: "{{ project_path }}/{{ item.value['http-01'].resource }}"
+    state: absent
+  with_dict:
+    - "{{ acme_challenge['challenge_data'] }}"
+  when: acme_method == 'http-01'
+
+- name: reload nginx
+  service:
+    name: nginx
+    state: reloaded

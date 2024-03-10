@@ -1,0 +1,18 @@
+---
+- hosts: ssl_activation
+  become: true
+  vars_files: 
+     - "group_vars/all"
+  pre_tasks:
+  - name: Update server packages
+    package:
+      name: '*'
+      state: latest
+      update_cache: yes
+    when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+
+- hosts: ssl_activation
+  become: true
+  roles:
+    - activation
+    - validation

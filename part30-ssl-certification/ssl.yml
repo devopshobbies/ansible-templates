@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+  - name: update_server
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Debian"
+  - name: update_server
+  yum:
+    upgrade: dist
+    update_cache: yes
+  when: ansible_distribution == "RedHat"
+
+- hosts: ssl_certification
+  become: true
+  roles:
+    - activaation
+    - validation

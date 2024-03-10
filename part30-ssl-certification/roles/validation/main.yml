@@ -1,0 +1,23 @@
+- name: Configure SSL Certificate with Certbot and Nginx
+  hosts: all
+  remote_user: root
+  become: true
+  vars_files: 
+    - "group_vars/all"
+  tasks:
+  - name: Create a challenge
+        community.crypto.acme_certificate:
+          account_key_src: "{{letsencrypt_account_key}}"
+          account_email: "{{ acme_account_email }}"
+          src: "{{letsencrypt_csrs_dir}}/{{ acme_domain }}.csr"
+          cert: "{{letsencrypt_certs_dir}}/{{ acme_domain}}.pem"
+          acme_directory: "{{ acme_directory }}"
+          acme_version: "{{ acme_version }}"
+          terms_agreed: true
+          force: true
+          modify_account: false
+          challenge: "{{ acme_method }}"
+        register: acme_challenge
+
+  - name: Show challenge
+    ansible.builtin.debug: var=acme_challenge

@@ -1,0 +1,22 @@
+
+- name: Create a challenge for validation step
+  community.crypto.acme_certificate:
+    account_key_src: "{{letsencrypt_account_key}}"
+    account_email: "{{ acme_account_email }}"
+    src: "{{letsencrypt_csrs_dir}}/{{ acme_domain }}.csr"
+    cert: "{{letsencrypt_certs_dir}}/{{ acme_domain}}.pem"
+    acme_directory: "{{ acme_directory }}"
+    acme_version: "{{ acme_version }}"
+    terms_agreed: true
+    force: true
+    modify_account: false
+    challenge: "{{ acme_method }}"
+  register: acme_challenge
+
+- name: Show challenge
+  ansible.builtin.debug: var=acme_challenge
+
+- name: reload nginx
+  service:
+    name: nginx
+    state: reloaded
