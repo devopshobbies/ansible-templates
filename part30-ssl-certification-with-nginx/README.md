@@ -18,7 +18,17 @@ This playbook will activate ssl certification with lets encrypt free certificati
 **letsencrypt_account_dir:** Letsencrypt ACCOUNT directory <br />
 **acme_domain:** The domain that want to activate the ssl. <br />
 
+
 ### Run the Playbook:
 ```
 ansible-playbook -l [target] -i [inventory file] -u [remote user] lemp.yml
 ```
+
+
+## nginx config
+add this line to nginx config file and restart it 
+```
+ ssl_certificate /etc/letsencrypt/{{acme_domain}}/certs/{{acme_domain}}-fullchain.pem; # Adjust path as necessary
+ ssl_certificate_key /etc/letsencrypt/{{acme_domain}}/keys/{{acme_domain}}.key; # Adjust path as necessary
+
+ ```
