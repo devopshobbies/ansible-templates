@@ -1,0 +1,14 @@
+acme_directory: https://acme-staging-v02.api.letsencrypt.org/directory   ##for test
+#acme_directory: https://acme-v02.api.letsencrypt.org/directory             ##for production
+acme_version: 2
+acme_revoke: false
+acme_account_email: example@gmail.com
+project_path: /var/www/html/
+
+letsencrypt_dir: /etc/letsencrypt/divaneparsi.ir
+letsencrypt_keys_dir: /etc/letsencrypt/divaneparsi.ir/keys
+letsencrypt_csrs_dir: /etc/letsencrypt/divaneparsi.ir/csrs
+letsencrypt_certs_dir: /etc/letsencrypt/divaneparsi.ir/certs
+letsencrypt_account_key: /etc/letsencrypt/divaneparsi.ir/privatekey.pem
+letsencrypt_account_dir: /etc/letsencrypt/divaneparsi.ir/account
+acme_domain: test.com
