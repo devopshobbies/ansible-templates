@@ -1,6 +1,6 @@
 - name: Get Apt-Key Jenkins
   get_url:
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
     dest: /usr/share/keyrings/jenkins-keyring.asc
 
 
