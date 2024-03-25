@@ -11,7 +11,8 @@
   apt_repository:
     repo: "ppa:vbernat/haproxy-2.8"
 
-- name: Install HAProxy package
+- name: Install HAProxy package on Ubuntu
   apt:
     name: haproxy=2.8.\*
     state: present
+    update_cache: yes

@@ -1,18 +1,17 @@
 ---
-# Only one of these should Be executed based on your OS family
-- include_tasks: haproxy_ubuntu.yml
-# - include_tasks: haproxy_redhat.yml
+- name: Install HAProsy on Redhat Family distributions
+  include_tasks: haproxy_install_{{ ansible_os_family }}_{{ ansible_pkg_mgr }}.yml
+  when: ansible_os_family == 'RedHat'
 
-- name: Strat and enable HAProxy
-  service:
-    name: haproxy
-    state: started
-    enabled: yes
+- name: Install HAProsy on Ubuntu distribution
+  include_tasks: haproxy_install_Ubuntu.yml
+  when:
+    - ansible_distribution == 'Ubuntu'
 
-- name: Copy HAProxy configuration in place.
-  template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-    mode: 0644
-    validate: haproxy -f %s -c -q
-  notify: restart haproxy
+- name: Install HAProsy on Debian distribution
+  include_tasks: haproxy_install_Debian.yml
+  when:
+    - ansible_distribution == 'Debian'
+
+- name: Configure HAProxy, Enable and Start service
+  include_tasks: haproxy_config.yml
