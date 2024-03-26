@@ -3,7 +3,8 @@
 jenkins_user: "admin"
 jenkins_url: "http://localhost:8080"
 jenkins_pkgs:
-  - openjdk-11-jre
+  - fontconfig 
+  - openjdk-17-jre
   - jenkins
 jk_plugins:
   configuration-as-code:
