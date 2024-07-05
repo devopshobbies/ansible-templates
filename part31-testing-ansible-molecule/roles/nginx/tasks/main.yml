@@ -1,0 +1,14 @@
+---
+- name: Update apt repository and cache (Debian-based)
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Ensure NGINX is installed (Debian-based)
+  apt:
+    name: nginx
+    state: present
+
+- name: Ensure NGINX is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
