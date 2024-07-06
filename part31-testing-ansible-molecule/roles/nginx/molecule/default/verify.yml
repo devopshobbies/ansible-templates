@@ -1,0 +1,9 @@
+---
+- name: Test NGINX deployment
+  hosts: all
+  become: yes
+  tasks:
+    - name: Verify Nginx is serving web requests.
+      uri:
+        url: http://localhost/
+        status_code: 200
