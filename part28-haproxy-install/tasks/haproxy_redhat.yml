@@ -1,5 +1,0 @@
----
-- name: Install HAProxy on RedHat based Linux
-  yum:
-    name: haproxy
-    state: latest

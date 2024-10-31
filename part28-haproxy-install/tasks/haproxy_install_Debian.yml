@@ -1,0 +1,7 @@
+---
+- name: Install HAProxy package on Debian
+  apt:
+    name: haproxy
+    state: present
+    update_cache: yes
+
