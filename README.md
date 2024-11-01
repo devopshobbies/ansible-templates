@@ -43,6 +43,9 @@
 | 🚀     | Ansible Tutorial - Part 30 - Install SSL Certificate                  | [Part 28 - Install SSL Certificate](./part30-ssl-certification-with-nginx/)                    |
 | 👨🏽‍🔬     | Ansible Tutorial - Part 31 - Testing Ansible with Molecule              | [Part 31 - Testing Ansible with Molecule](./part31-testing-ansible-molecule/)  |
 | 👨🏽‍🔬     | Ansible Tutorial - Part 32 - Testing Ansible with Molecule (testinfra) | [Part 32 - Testing Ansible with Molecule](./part32-testing-ansible-molecule/)  |
+| ⚡️✨ | Ansible Tutorial - Part 33 - Playbook Optimization and Best Practices | [Part 33 - Optimization and Best Practices](./part33-playbook-best-practices/) |
+
+
 ## Contributions:
 
 We are more than welcome with any kind of contribution. Noticed there are too many ways to contribute to open-source projects. You can use the following guide:
