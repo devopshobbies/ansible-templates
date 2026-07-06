@@ -1,3 +1,8 @@
+- name: Ensure cron is installed
+  ansible.builtin.apt:
+    name: cron
+    state: present
+
 - name: Install cronjob
   cron:
     name: Check host memory
@@ -8,4 +13,3 @@
     weekday: "*"
     job: "{{ job_path }} >> {{ log_path }} 2>&1"
     user: root
-
