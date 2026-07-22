@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+  gather_facts: False
   vars:
     the_user: "devops"
 
@@ -8,7 +9,7 @@
     - name: create-user
       user:
         name: "{{ the_user }}"
-        groups: root,wheel
+        groups: root
         shell: /bin/bash
         state: present
         create_home: yes
@@ -19,6 +20,13 @@
         generate_ssh_key: yes
         ssh_key_bits: 2048
         ssh_key_file: .ssh/id_rsa
+
+    - name: Copy local SSH public key to target
+      authorized_key:
+        user: "{{ the_user }}"
+        state: present
+        manage_dir: yes
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 
     - name: set password
       user:

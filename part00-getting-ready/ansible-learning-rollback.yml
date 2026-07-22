@@ -1,0 +1,22 @@
+---
+- name: Revert devops Account
+  hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+    - name: Remove ssh key
+      authorized_key:
+        user: devops
+        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+        state: absent
+
+    - name: Remove account
+      user:
+        name: devops
+        state: absent
+        remove: yes
+
+    - name: Remove sudo access
+      file:
+        path: /etc/sudoers.d/devops
+        state: absent

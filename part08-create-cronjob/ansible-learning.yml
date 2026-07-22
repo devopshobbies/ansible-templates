@@ -2,6 +2,9 @@
 - hosts: Servers
   gather_facts: no
   become: yes
+  vars:
+    job_path: "/usr/local/bin/check-memory.sh"
+    log_path: "/var/log/check-memory.log"
   
   roles:
     - create-cronjob

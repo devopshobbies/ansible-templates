@@ -20,6 +20,9 @@ Including an example of how to use your role (for instance, with variables passe
 
     ansible-playbook play.yml [ --limit server-ip ]
 
+Testing:
+    ansible-playbook update-linux/tests/test.yml -i update-linux/tests/inventory  -u $(whoami) --ask-become-pass
+
 ## License
 
 MIT

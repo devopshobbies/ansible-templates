@@ -3,6 +3,12 @@
     name: cron
     state: present
 
+- name: Copy memory check script to remote host
+  copy:
+    src: files/check-memory.sh
+    dest: "{{ job_path }}"
+    mode: '0755'
+
 - name: Install cronjob
   cron:
     name: Check host memory

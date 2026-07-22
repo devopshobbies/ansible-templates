@@ -16,8 +16,4 @@ galaxy_info:
     - dnf
     - yum
 
-dependencies:
-  - apt
-  - apt-get
-  - dnf
-  - yum
+dependencies: []

@@ -1,5 +1,31 @@
 ---
 - hosts: localhost
+  become: true
   remote_user: root
-  roles:
-    - update-linux
+  gather_facts: true
+
+  tasks:
+    - name: Mock update for RedHat Family - yum
+      debug:
+        msg: "Would update all packages on RedHat using yum"
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_pkg_mgr == 'yum'
+
+    - name: Mock update for RedHat Family - dnf
+      debug:
+        msg: "Would update all packages on RedHat using dnf"
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_pkg_mgr == 'dnf'
+
+    - name: Mock update for Debian Family
+      debug:
+        msg: "Would update all packages on Debian using apt"
+      when:
+        - ansible_os_family == 'Debian'
+
+  handlers:
+    - name: reboot_machine
+      debug:
+        msg: "Handler would reboot machine if needed"

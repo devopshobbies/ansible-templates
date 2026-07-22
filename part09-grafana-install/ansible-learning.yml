@@ -5,12 +5,15 @@
   tasks:
     - name: Install nessesary package
       apt: 
-        name: apt-transport-https
+        name:
+          - apt-transport-https
+          - curl
+          - gnupg
         state: present
         update_cache: yes
 
     - name: add grafana gpg key
-      shell: curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+      shell: curl https://packages.grafana.com/gpg.key | apt-key add -
 
     - name: add grafana repo 
       apt_repository:

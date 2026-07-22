@@ -14,7 +14,7 @@ wp_admin_password: "!2three456."
 wp_theme: "twentynineteen"
 
 # WP DATABASE CREDENTIALS
-mysql_password: "Qw9M#sL!B"
+mysql_password: "mysql_password"
 wp_db_name: "wordpress"
 wp_db_password: "password"
 wp_db_user: "wordpressuser"
