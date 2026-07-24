@@ -1,1 +1,1 @@
-- include_tasks: configure.yml
+- ansible.builtin.include_tasks: configure.yml

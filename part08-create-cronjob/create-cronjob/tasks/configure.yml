@@ -1,3 +1,8 @@
+- name: Ensure cron is installed
+  ansible.builtin.apt:
+    name: cron
+    state: present
+
 - name: Copy memory check script to remote host
   copy:
     src: files/check-memory.sh
